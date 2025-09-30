@@ -1,1 +1,1 @@
-# DoDays API TypeScript SDK
+# Official DoDays API TypeScript SDK
