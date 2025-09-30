@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "http://api.dodays.test/v1".replace(/\/+$/, "");
+export const BASE_PATH = "https://api.dodays.co.uk/v1".replace(/\/+$/, "");
 
 export interface ConfigurationParameters {
     basePath?: string; // override base path
