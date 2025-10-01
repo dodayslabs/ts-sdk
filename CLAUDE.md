@@ -9,25 +9,42 @@ This is a TypeScript SDK for the DoDays API, generated using OpenAPI Generator. 
 ## Architecture
 
 - **Generator-based SDK**: This project uses OpenAPI Generator to create TypeScript client code from API specifications
+- **OpenAPI Specification**: The source OpenAPI spec is located at `../docs/openapi.yaml` (relative to this repository)
+- **Generator**: Uses `typescript-fetch` generator to create the SDK
+- **Output Directory**: Generated code is placed in the `src/` directory
+- **Build Output**: Compiled JavaScript and TypeScript declarations are output to `dist/` directory
 - **Node.js Environment**: Configured for Node.js v24.4.1 (specified in .nvmrc)
 - **Package Manager**: Uses pnpm (version 10.17.1) as specified in package.json
 
 ## Commands
 
+### Build Process
+
+```bash
+# Full build (generate + compile)
+pnpm build
+
+# Generate SDK from OpenAPI spec (from ../docs/openapi.yaml)
+pnpm generate
+
+# Compile TypeScript to JavaScript
+pnpm compile
+```
+
 ### Code Generation
 
 ```bash
-# Generate TypeScript SDK from OpenAPI specification
-npx openapi-generator-cli generate
+# Generate TypeScript SDK from OpenAPI specification (manual)
+npx openapi-generator-cli generate -i ../docs/openapi.yaml -g typescript-fetch -o src
 
 # View available generators
 npx openapi-generator-cli list
 
 # Validate OpenAPI specification
-npx openapi-generator-cli validate
+npx openapi-generator-cli validate -i ../docs/openapi.yaml
 
 # Get help for configuration options
-npx openapi-generator-cli config-help -g typescript-axios
+npx openapi-generator-cli config-help -g typescript-fetch
 ```
 
 ### Package Management
@@ -42,8 +59,9 @@ nvm use
 
 ## Development Notes
 
-- The repository currently contains minimal source code as it's designed to be generated
-- OpenAPI Generator configuration is stored in `openapitools.json`
-- No custom scripts are currently defined in package.json
-- Generated code should not be manually edited as it will be overwritten during regeneration
-- Use the OpenAPI specification as the source of truth for API changes
+- **Source of Truth**: The OpenAPI specification at `../docs/openapi.yaml` is the single source of truth for the API
+- **Generated Code**: All code in `src/` is generated and should not be manually edited as it will be overwritten during regeneration
+- **Build Artifacts**: The `dist/` directory contains compiled output and is what gets published to npm
+- **OpenAPI Generator**: Configuration is stored in `openapitools.json` (currently using version 7.15.0)
+- **Generator Type**: Uses `typescript-fetch` generator which creates a lightweight client using the Fetch API
+- **Workflow**: When the OpenAPI spec changes, run `pnpm build` to regenerate the SDK and compile it
