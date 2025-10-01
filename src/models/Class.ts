@@ -134,6 +134,12 @@ export interface Class {
      * @type {string}
      * @memberof Class
      */
+    providerHandle?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Class
+     */
     stage?: string;
     /**
      * 
@@ -225,6 +231,7 @@ export function ClassFromJSONTyped(json: any, ignoreDiscriminator: boolean): Cla
         'providerId': json['provider_id'] == null ? undefined : json['provider_id'],
         'providerName': json['provider_name'] == null ? undefined : json['provider_name'],
         'providerClassImage': json['provider_class_image'] == null ? undefined : json['provider_class_image'],
+        'providerHandle': json['provider_handle'] == null ? undefined : json['provider_handle'],
         'stage': json['stage'] == null ? undefined : json['stage'],
         'stageClassImage': json['stage_class_image'] == null ? undefined : json['stage_class_image'],
         'ability': json['ability'] == null ? undefined : json['ability'],
@@ -264,6 +271,7 @@ export function ClassToJSONTyped(value?: Class | null, ignoreDiscriminator: bool
         'provider_id': value['providerId'],
         'provider_name': value['providerName'],
         'provider_class_image': value['providerClassImage'],
+        'provider_handle': value['providerHandle'],
         'stage': value['stage'],
         'stage_class_image': value['stageClassImage'],
         'ability': value['ability'],

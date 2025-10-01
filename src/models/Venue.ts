@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { VenueCoordinates } from './VenueCoordinates';
+import {
+    VenueCoordinatesFromJSON,
+    VenueCoordinatesFromJSONTyped,
+    VenueCoordinatesToJSON,
+    VenueCoordinatesToJSONTyped,
+} from './VenueCoordinates';
+
 /**
  * 
  * @export
@@ -67,6 +75,12 @@ export interface Venue {
      * @memberof Venue
      */
     changingFacilities?: string;
+    /**
+     * 
+     * @type {VenueCoordinates}
+     * @memberof Venue
+     */
+    coordinates?: VenueCoordinates;
 }
 
 /**
@@ -94,6 +108,7 @@ export function VenueFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ven
         'parking': json['parking'] == null ? undefined : json['parking'],
         'landmarks': json['landmarks'] == null ? undefined : json['landmarks'],
         'changingFacilities': json['changing_facilities'] == null ? undefined : json['changing_facilities'],
+        'coordinates': json['coordinates'] == null ? undefined : VenueCoordinatesFromJSON(json['coordinates']),
     };
 }
 
@@ -116,6 +131,7 @@ export function VenueToJSONTyped(value?: Venue | null, ignoreDiscriminator: bool
         'parking': value['parking'],
         'landmarks': value['landmarks'],
         'changing_facilities': value['changingFacilities'],
+        'coordinates': VenueCoordinatesToJSON(value['coordinates']),
     };
 }
 

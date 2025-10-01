@@ -96,5 +96,6 @@ export * from './Subscription';
 export * from './Term';
 export * from './User';
 export * from './Venue';
+export * from './VenueCoordinates';
 export * from './Voucher';
 export * from './Waitee';
