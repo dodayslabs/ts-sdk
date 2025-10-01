@@ -81,13 +81,13 @@ export interface Provider {
      * @type {number}
      * @memberof Provider
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Provider
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
@@ -117,13 +117,13 @@ export interface Provider {
      * @type {string}
      * @memberof Provider
      */
-    handle?: string;
+    handle: string;
     /**
      * 
      * @type {string}
      * @memberof Provider
      */
-    email?: string;
+    email: string;
     /**
      * 
      * @type {string}
@@ -226,6 +226,10 @@ export interface Provider {
  * Check if a given object implements the Provider interface.
  */
 export function instanceOfProvider(value: object): value is Provider {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('handle' in value) || value['handle'] === undefined) return false;
+    if (!('email' in value) || value['email'] === undefined) return false;
     return true;
 }
 
@@ -239,14 +243,14 @@ export function ProviderFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'name': json['name'] == null ? undefined : json['name'],
+        'id': json['id'],
+        'name': json['name'],
         'icon': json['icon'] == null ? undefined : json['icon'],
         'classImage': json['class_image'] == null ? undefined : json['class_image'],
         'strapline': json['strapline'] == null ? undefined : json['strapline'],
         'description': json['description'] == null ? undefined : json['description'],
-        'handle': json['handle'] == null ? undefined : json['handle'],
-        'email': json['email'] == null ? undefined : json['email'],
+        'handle': json['handle'],
+        'email': json['email'],
         'telephone': json['telephone'] == null ? undefined : json['telephone'],
         'website': json['website'] == null ? undefined : json['website'],
         'absorbFee': json['absorb_fee'] == null ? undefined : json['absorb_fee'],
