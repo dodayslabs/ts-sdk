@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Venue } from './Venue';
+import {
+    VenueFromJSON,
+    VenueFromJSONTyped,
+    VenueToJSON,
+    VenueToJSONTyped,
+} from './Venue';
 import type { Session } from './Session';
 import {
     SessionFromJSON,
@@ -183,6 +190,12 @@ export interface Class {
      * @memberof Class
      */
     sessions?: Array<Session>;
+    /**
+     * 
+     * @type {Venue}
+     * @memberof Class
+     */
+    venue?: Venue;
 }
 
 
@@ -240,6 +253,7 @@ export function ClassFromJSONTyped(json: any, ignoreDiscriminator: boolean): Cla
         'nextSession': json['next_session'] == null ? undefined : (new Date(json['next_session'])),
         'nextSessionEndsAt': json['next_session_ends_at'] == null ? undefined : (new Date(json['next_session_ends_at'])),
         'sessions': json['sessions'] == null ? undefined : ((json['sessions'] as Array<any>).map(SessionFromJSON)),
+        'venue': json['venue'] == null ? undefined : VenueFromJSON(json['venue']),
     };
 }
 
@@ -280,6 +294,7 @@ export function ClassToJSONTyped(value?: Class | null, ignoreDiscriminator: bool
         'next_session': value['nextSession'] == null ? undefined : ((value['nextSession']).toISOString()),
         'next_session_ends_at': value['nextSessionEndsAt'] == null ? undefined : ((value['nextSessionEndsAt']).toISOString()),
         'sessions': value['sessions'] == null ? undefined : ((value['sessions'] as Array<any>).map(SessionToJSON)),
+        'venue': VenueToJSON(value['venue']),
     };
 }
 

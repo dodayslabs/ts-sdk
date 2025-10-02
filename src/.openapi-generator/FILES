@@ -123,7 +123,6 @@ models/Subscription.ts
 models/Term.ts
 models/User.ts
 models/Venue.ts
-models/VenueCoordinates.ts
 models/Voucher.ts
 models/Waitee.ts
 models/index.ts
