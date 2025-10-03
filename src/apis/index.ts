@@ -10,6 +10,7 @@ export * from './CatchUpsApi';
 export * from './ClassesApi';
 export * from './CouponsApi';
 export * from './DaysApi';
+export * from './DiscoverApi';
 export * from './LinksApi';
 export * from './MetricsApi';
 export * from './PaymentIntentsApi';

@@ -159,6 +159,12 @@ export interface Class {
      * @type {string}
      * @memberof Class
      */
+    venueImage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Class
+     */
     ability?: ClassAbilityEnum;
     /**
      * 
@@ -247,6 +253,7 @@ export function ClassFromJSONTyped(json: any, ignoreDiscriminator: boolean): Cla
         'providerHandle': json['provider_handle'] == null ? undefined : json['provider_handle'],
         'stage': json['stage'] == null ? undefined : json['stage'],
         'stageClassImage': json['stage_class_image'] == null ? undefined : json['stage_class_image'],
+        'venueImage': json['venue_image'] == null ? undefined : json['venue_image'],
         'ability': json['ability'] == null ? undefined : json['ability'],
         'spacesCount': json['spaces_count'] == null ? undefined : json['spaces_count'],
         'invitedWaiteesCount': json['invited_waitees_count'] == null ? undefined : json['invited_waitees_count'],
@@ -288,6 +295,7 @@ export function ClassToJSONTyped(value?: Class | null, ignoreDiscriminator: bool
         'provider_handle': value['providerHandle'],
         'stage': value['stage'],
         'stage_class_image': value['stageClassImage'],
+        'venue_image': value['venueImage'],
         'ability': value['ability'],
         'spaces_count': value['spacesCount'],
         'invited_waitees_count': value['invitedWaiteesCount'],

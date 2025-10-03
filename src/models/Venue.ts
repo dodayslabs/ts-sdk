@@ -57,6 +57,12 @@ export interface Venue {
     longitude: number;
     /**
      * 
+     * @type {number}
+     * @memberof Venue
+     */
+    distance?: number;
+    /**
+     * 
      * @type {string}
      * @memberof Venue
      */
@@ -109,6 +115,7 @@ export function VenueFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ven
         'address': json['address'],
         'latitude': json['latitude'],
         'longitude': json['longitude'],
+        'distance': json['distance'] == null ? undefined : json['distance'],
         'information': json['information'] == null ? undefined : json['information'],
         'parking': json['parking'] == null ? undefined : json['parking'],
         'landmarks': json['landmarks'] == null ? undefined : json['landmarks'],
@@ -133,6 +140,7 @@ export function VenueToJSONTyped(value?: Venue | null, ignoreDiscriminator: bool
         'address': value['address'],
         'latitude': value['latitude'],
         'longitude': value['longitude'],
+        'distance': value['distance'],
         'information': value['information'],
         'parking': value['parking'],
         'landmarks': value['landmarks'],

@@ -8,6 +8,7 @@ apis/CatchUpsApi.ts
 apis/ClassesApi.ts
 apis/CouponsApi.ts
 apis/DaysApi.ts
+apis/DiscoverApi.ts
 apis/LinksApi.ts
 apis/MetricsApi.ts
 apis/PaymentIntentsApi.ts
@@ -38,6 +39,9 @@ models/GetBookingSessions200Response.ts
 models/GetBookings200Response.ts
 models/GetClass200Response.ts
 models/GetClasses200Response.ts
+models/GetDiscover200Response.ts
+models/GetDiscover200ResponseDataInner.ts
+models/GetDiscoverFilterBoundsParameter.ts
 models/GetLink200Response.ts
 models/GetMetric200Response.ts
 models/GetMetric200ResponseOneOf.ts
