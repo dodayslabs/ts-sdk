@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Type } from './Type';
+import {
+    TypeFromJSON,
+    TypeFromJSONTyped,
+    TypeToJSON,
+    TypeToJSONTyped,
+} from './Type';
 import type { Venue } from './Venue';
 import {
     VenueFromJSON,
@@ -117,6 +124,12 @@ export interface Provider {
      * @type {string}
      * @memberof Provider
      */
+    category: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Provider
+     */
     handle: string;
     /**
      * 
@@ -148,6 +161,12 @@ export interface Provider {
      * @memberof Provider
      */
     stripeId?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Provider
+     */
+    featured?: boolean;
     /**
      * 
      * @type {ProviderBookingSettings}
@@ -204,6 +223,12 @@ export interface Provider {
     terms?: Array<Term>;
     /**
      * 
+     * @type {Array<Type>}
+     * @memberof Provider
+     */
+    types?: Array<Type>;
+    /**
+     * 
      * @type {Array<Venue>}
      * @memberof Provider
      */
@@ -228,6 +253,7 @@ export interface Provider {
 export function instanceOfProvider(value: object): value is Provider {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('category' in value) || value['category'] === undefined) return false;
     if (!('handle' in value) || value['handle'] === undefined) return false;
     if (!('email' in value) || value['email'] === undefined) return false;
     return true;
@@ -249,12 +275,14 @@ export function ProviderFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'classImage': json['class_image'] == null ? undefined : json['class_image'],
         'strapline': json['strapline'] == null ? undefined : json['strapline'],
         'description': json['description'] == null ? undefined : json['description'],
+        'category': json['category'],
         'handle': json['handle'],
         'email': json['email'],
         'telephone': json['telephone'] == null ? undefined : json['telephone'],
         'website': json['website'] == null ? undefined : json['website'],
         'absorbFee': json['absorb_fee'] == null ? undefined : json['absorb_fee'],
         'stripeId': json['stripe_id'] == null ? undefined : json['stripe_id'],
+        'featured': json['featured'] == null ? undefined : json['featured'],
         'bookingSettings': json['booking_settings'] == null ? undefined : ProviderBookingSettingsFromJSON(json['booking_settings']),
         'catchUpSettings': json['catch_up_settings'] == null ? undefined : ProviderCatchUpSettingsFromJSON(json['catch_up_settings']),
         'waitingListSettings': json['waiting_list_settings'] == null ? undefined : ProviderWaitingListSettingsFromJSON(json['waiting_list_settings']),
@@ -264,6 +292,7 @@ export function ProviderFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'privacyPolicy': json['privacy_policy'] == null ? undefined : json['privacy_policy'],
         'photoConsent': json['photo_consent'] == null ? undefined : json['photo_consent'],
         'terms': json['terms'] == null ? undefined : ((json['terms'] as Array<any>).map(TermFromJSON)),
+        'types': json['types'] == null ? undefined : ((json['types'] as Array<any>).map(TypeFromJSON)),
         'venues': json['venues'] == null ? undefined : ((json['venues'] as Array<any>).map(VenueFromJSON)),
         'stages': json['stages'] == null ? undefined : ((json['stages'] as Array<any>).map(StageFromJSON)),
         'vouchers': json['vouchers'] == null ? undefined : ((json['vouchers'] as Array<any>).map(ProductFromJSON)),
@@ -287,12 +316,14 @@ export function ProviderToJSONTyped(value?: Provider | null, ignoreDiscriminator
         'class_image': value['classImage'],
         'strapline': value['strapline'],
         'description': value['description'],
+        'category': value['category'],
         'handle': value['handle'],
         'email': value['email'],
         'telephone': value['telephone'],
         'website': value['website'],
         'absorb_fee': value['absorbFee'],
         'stripe_id': value['stripeId'],
+        'featured': value['featured'],
         'booking_settings': ProviderBookingSettingsToJSON(value['bookingSettings']),
         'catch_up_settings': ProviderCatchUpSettingsToJSON(value['catchUpSettings']),
         'waiting_list_settings': ProviderWaitingListSettingsToJSON(value['waitingListSettings']),
@@ -302,6 +333,7 @@ export function ProviderToJSONTyped(value?: Provider | null, ignoreDiscriminator
         'privacy_policy': value['privacyPolicy'],
         'photo_consent': value['photoConsent'],
         'terms': value['terms'] == null ? undefined : ((value['terms'] as Array<any>).map(TermToJSON)),
+        'types': value['types'] == null ? undefined : ((value['types'] as Array<any>).map(TypeToJSON)),
         'venues': value['venues'] == null ? undefined : ((value['venues'] as Array<any>).map(VenueToJSON)),
         'stages': value['stages'] == null ? undefined : ((value['stages'] as Array<any>).map(StageToJSON)),
         'vouchers': value['vouchers'] == null ? undefined : ((value['vouchers'] as Array<any>).map(ProductToJSON)),

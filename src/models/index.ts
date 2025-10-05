@@ -97,6 +97,7 @@ export * from './StudentGoal';
 export * from './StudentStage';
 export * from './Subscription';
 export * from './Term';
+export * from './Type';
 export * from './User';
 export * from './Venue';
 export * from './Voucher';

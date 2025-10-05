@@ -125,6 +125,7 @@ models/StudentGoal.ts
 models/StudentStage.ts
 models/Subscription.ts
 models/Term.ts
+models/Type.ts
 models/User.ts
 models/Venue.ts
 models/Voucher.ts

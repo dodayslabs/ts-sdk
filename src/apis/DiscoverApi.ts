@@ -32,6 +32,7 @@ export interface GetDiscoverRequest {
     filterCategory?: GetDiscoverFilterCategoryEnum;
     filterRadius?: number;
     filterBounds?: GetDiscoverFilterBoundsParameter;
+    sort?: GetDiscoverSortEnum;
     page?: number;
     limit?: number;
 }
@@ -91,6 +92,10 @@ export class DiscoverApi extends runtime.BaseAPI {
 
         if (requestParameters['filterBounds'] != null) {
             queryParameters['filter[bounds]'] = requestParameters['filterBounds'];
+        }
+
+        if (requestParameters['sort'] != null) {
+            queryParameters['sort'] = requestParameters['sort'];
         }
 
         if (requestParameters['page'] != null) {
@@ -159,3 +164,11 @@ export const GetDiscoverFilterCategoryEnum = {
     Watch: 'watch'
 } as const;
 export type GetDiscoverFilterCategoryEnum = typeof GetDiscoverFilterCategoryEnum[keyof typeof GetDiscoverFilterCategoryEnum];
+/**
+ * @export
+ */
+export const GetDiscoverSortEnum = {
+    Distance: 'distance',
+    Name: 'name'
+} as const;
+export type GetDiscoverSortEnum = typeof GetDiscoverSortEnum[keyof typeof GetDiscoverSortEnum];
