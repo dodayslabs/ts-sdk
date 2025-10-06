@@ -29,7 +29,7 @@ export interface GetDiscoverRequest {
     filterType: GetDiscoverFilterTypeEnum;
     filterLatitude: number;
     filterLongitude: number;
-    filterCategory?: GetDiscoverFilterCategoryEnum;
+    filterCategories?: Array<GetDiscoverFilterCategoriesEnum>;
     filterRadius?: number;
     filterBounds?: GetDiscoverFilterBoundsParameter;
     sort?: GetDiscoverSortEnum;
@@ -74,8 +74,8 @@ export class DiscoverApi extends runtime.BaseAPI {
             queryParameters['filter[type]'] = requestParameters['filterType'];
         }
 
-        if (requestParameters['filterCategory'] != null) {
-            queryParameters['filter[category]'] = requestParameters['filterCategory'];
+        if (requestParameters['filterCategories'] != null) {
+            queryParameters['filter[categories]'] = requestParameters['filterCategories'];
         }
 
         if (requestParameters['filterLatitude'] != null) {
@@ -151,7 +151,7 @@ export type GetDiscoverFilterTypeEnum = typeof GetDiscoverFilterTypeEnum[keyof t
 /**
  * @export
  */
-export const GetDiscoverFilterCategoryEnum = {
+export const GetDiscoverFilterCategoriesEnum = {
     Create: 'create',
     Explore: 'explore',
     Learn: 'learn',
@@ -163,7 +163,7 @@ export const GetDiscoverFilterCategoryEnum = {
     Taste: 'taste',
     Watch: 'watch'
 } as const;
-export type GetDiscoverFilterCategoryEnum = typeof GetDiscoverFilterCategoryEnum[keyof typeof GetDiscoverFilterCategoryEnum];
+export type GetDiscoverFilterCategoriesEnum = typeof GetDiscoverFilterCategoriesEnum[keyof typeof GetDiscoverFilterCategoriesEnum];
 /**
  * @export
  */
