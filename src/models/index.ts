@@ -2,6 +2,7 @@
 /* eslint-disable */
 export * from './Booking';
 export * from './BookingSession';
+export * from './Category';
 export * from './Class';
 export * from './Discount';
 export * from './GetAbilities200Response';

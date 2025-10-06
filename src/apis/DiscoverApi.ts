@@ -15,21 +15,28 @@
 
 import * as runtime from '../runtime';
 import type {
+  Category,
   GetDiscover200Response,
   GetDiscoverFilterBoundsParameter,
+  Type,
 } from '../models/index';
 import {
+    CategoryFromJSON,
+    CategoryToJSON,
     GetDiscover200ResponseFromJSON,
     GetDiscover200ResponseToJSON,
     GetDiscoverFilterBoundsParameterFromJSON,
     GetDiscoverFilterBoundsParameterToJSON,
+    TypeFromJSON,
+    TypeToJSON,
 } from '../models/index';
 
 export interface GetDiscoverRequest {
     filterType: GetDiscoverFilterTypeEnum;
     filterLatitude: number;
     filterLongitude: number;
-    filterCategories?: Array<GetDiscoverFilterCategoriesEnum>;
+    filterCategories?: Array<Category>;
+    filterTypes?: Array<Type>;
     filterRadius?: number;
     filterBounds?: GetDiscoverFilterBoundsParameter;
     sort?: GetDiscoverSortEnum;
@@ -75,7 +82,11 @@ export class DiscoverApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['filterCategories'] != null) {
-            queryParameters['filter[categories]'] = requestParameters['filterCategories'];
+            queryParameters['filter[categories][]'] = requestParameters['filterCategories'];
+        }
+
+        if (requestParameters['filterTypes'] != null) {
+            queryParameters['filter[types][]'] = requestParameters['filterTypes'];
         }
 
         if (requestParameters['filterLatitude'] != null) {
@@ -148,22 +159,6 @@ export const GetDiscoverFilterTypeEnum = {
     Activity: 'activity'
 } as const;
 export type GetDiscoverFilterTypeEnum = typeof GetDiscoverFilterTypeEnum[keyof typeof GetDiscoverFilterTypeEnum];
-/**
- * @export
- */
-export const GetDiscoverFilterCategoriesEnum = {
-    Create: 'create',
-    Explore: 'explore',
-    Learn: 'learn',
-    Listen: 'listen',
-    Move: 'move',
-    Perform: 'perform',
-    Play: 'play',
-    Relax: 'relax',
-    Taste: 'taste',
-    Watch: 'watch'
-} as const;
-export type GetDiscoverFilterCategoriesEnum = typeof GetDiscoverFilterCategoriesEnum[keyof typeof GetDiscoverFilterCategoriesEnum];
 /**
  * @export
  */

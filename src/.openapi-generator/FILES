@@ -30,6 +30,7 @@ apis/index.ts
 index.ts
 models/Booking.ts
 models/BookingSession.ts
+models/Category.ts
 models/Class.ts
 models/Discount.ts
 models/GetAbilities200Response.ts

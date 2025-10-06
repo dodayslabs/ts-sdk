@@ -12,34 +12,35 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+
 /**
  * 
  * @export
- * @interface Type
  */
-export interface Type {
-    /**
-     * 
-     * @type {number}
-     * @memberof Type
-     */
-    id: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Type
-     */
-    name: string;
-}
+export const Type = {
+    AccessibleInclusivePlaces: 'accessible-inclusive-places',
+    BabyToddler: 'baby-toddler',
+    CommunityEvents: 'community-events',
+    FamilyDaysO: 'family-days-o',
+    HolidayCamps: 'holiday-camps',
+    IndoorActivities: 'indoor-activities',
+    KidsActivities: 'kids-activities',
+    OutdoorActivities: 'outdoor-activities',
+    PetFriendlySpac: 'pet-friendly-spac',
+    SeasonsTraditions: 'seasons-traditions'
+} as const;
+export type Type = typeof Type[keyof typeof Type];
 
-/**
- * Check if a given object implements the Type interface.
- */
-export function instanceOfType(value: object): value is Type {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    return true;
+
+export function instanceOfType(value: any): boolean {
+    for (const key in Type) {
+        if (Object.prototype.hasOwnProperty.call(Type, key)) {
+            if (Type[key as keyof typeof Type] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 export function TypeFromJSON(json: any): Type {
@@ -47,29 +48,14 @@ export function TypeFromJSON(json: any): Type {
 }
 
 export function TypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Type {
-    if (json == null) {
-        return json;
-    }
-    return {
-        
-        'id': json['id'],
-        'name': json['name'],
-    };
+    return json as Type;
 }
 
-export function TypeToJSON(json: any): Type {
-    return TypeToJSONTyped(json, false);
+export function TypeToJSON(value?: Type | null): any {
+    return value as any;
 }
 
-export function TypeToJSONTyped(value?: Type | null, ignoreDiscriminator: boolean = false): any {
-    if (value == null) {
-        return value;
-    }
-
-    return {
-        
-        'id': value['id'],
-        'name': value['name'],
-    };
+export function TypeToJSONTyped(value: any, ignoreDiscriminator: boolean): Type {
+    return value as Type;
 }
 
