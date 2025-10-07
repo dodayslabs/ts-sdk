@@ -21,7 +21,7 @@ export const Type = {
     AccessibleInclusivePlaces: 'accessible-inclusive-places',
     BabyToddler: 'baby-toddler',
     CommunityEvents: 'community-events',
-    FamilyDaysO: 'family-days-o',
+    FamilyDaysOut: 'family-days-out',
     HolidayCamps: 'holiday-camps',
     IndoorActivities: 'indoor-activities',
     KidsActivities: 'kids-activities',
