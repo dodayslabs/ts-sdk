@@ -39,7 +39,7 @@ export interface Class {
      * @type {number}
      * @memberof Class
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {number}
@@ -51,7 +51,7 @@ export interface Class {
      * @type {string}
      * @memberof Class
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
@@ -220,6 +220,8 @@ export type ClassAbilityEnum = typeof ClassAbilityEnum[keyof typeof ClassAbility
  * Check if a given object implements the Class interface.
  */
 export function instanceOfClass(value: object): value is Class {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
     return true;
 }
 
@@ -233,9 +235,9 @@ export function ClassFromJSONTyped(json: any, ignoreDiscriminator: boolean): Cla
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
+        'id': json['id'],
         'activityId': json['activity_id'] == null ? undefined : json['activity_id'],
-        'name': json['name'] == null ? undefined : json['name'],
+        'name': json['name'],
         'image': json['image'] == null ? undefined : json['image'],
         'description': json['description'] == null ? undefined : json['description'],
         'sessionCost': json['session_cost'] == null ? undefined : json['session_cost'],

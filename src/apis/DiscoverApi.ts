@@ -169,6 +169,7 @@ export type GetDiscoverFilterTypeEnum = typeof GetDiscoverFilterTypeEnum[keyof t
  */
 export const GetDiscoverSortEnum = {
     Distance: 'distance',
-    Name: 'name'
+    Name: 'name',
+    When: 'when'
 } as const;
 export type GetDiscoverSortEnum = typeof GetDiscoverSortEnum[keyof typeof GetDiscoverSortEnum];
