@@ -39,6 +39,7 @@ export interface GetDiscoverRequest {
     filterTypes?: Array<Type>;
     filterRadius?: number;
     filterBounds?: GetDiscoverFilterBoundsParameter;
+    filterWhen?: string;
     sort?: GetDiscoverSortEnum;
     page?: number;
     limit?: number;
@@ -103,6 +104,10 @@ export class DiscoverApi extends runtime.BaseAPI {
 
         if (requestParameters['filterBounds'] != null) {
             queryParameters['filter[bounds]'] = requestParameters['filterBounds'];
+        }
+
+        if (requestParameters['filterWhen'] != null) {
+            queryParameters['filter[when]'] = requestParameters['filterWhen'];
         }
 
         if (requestParameters['sort'] != null) {
