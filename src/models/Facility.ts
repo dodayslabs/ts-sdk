@@ -20,7 +20,7 @@
 export const Facility = {
     FreeWifi: 'free-wifi',
     LockersAvailable: 'lockers-available',
-    OnsiteCaf: 'onsite-café',
+    OnsiteCafe: 'onsite-cafe',
     OnsiteParking: 'onsite-parking',
     PetFriendly: 'pet-friendly',
     BabyChanging: 'baby-changing',
