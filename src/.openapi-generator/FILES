@@ -32,6 +32,7 @@ models/Booking.ts
 models/BookingSession.ts
 models/Category.ts
 models/Class.ts
+models/ClassWithType.ts
 models/Discount.ts
 models/GetAbilities200Response.ts
 models/GetAvailableCatchUpSessions200Response.ts
@@ -119,6 +120,7 @@ models/ProviderBookingSettings.ts
 models/ProviderCatchUpSettings.ts
 models/ProviderNotificationSettings.ts
 models/ProviderWaitingListSettings.ts
+models/ProviderWithType.ts
 models/Session.ts
 models/Stage.ts
 models/Student.ts

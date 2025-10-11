@@ -26,7 +26,7 @@ export const Type = {
     IndoorActivities: 'indoor-activities',
     KidsActivities: 'kids-activities',
     OutdoorActivities: 'outdoor-activities',
-    PetFriendlySpac: 'pet-friendly-spac',
+    PetFriendlySpaces: 'pet-friendly-spaces',
     SeasonsTraditions: 'seasons-traditions'
 } as const;
 export type Type = typeof Type[keyof typeof Type];

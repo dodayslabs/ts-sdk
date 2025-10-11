@@ -87,200 +87,217 @@ import {
 /**
  * 
  * @export
- * @interface Provider
+ * @interface ProviderWithType
  */
-export interface Provider {
+export interface ProviderWithType {
     /**
      * 
      * @type {number}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     id: number;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     icon?: string;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     classImage?: string;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     strapline?: string;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     description?: string;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     handle: string;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     email?: string;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     telephone?: string;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     website?: string;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     stripeId?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     absorbFee?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     verified?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     featured?: boolean;
     /**
      * 
      * @type {ProviderBookingSettings}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     bookingSettings?: ProviderBookingSettings;
     /**
      * 
      * @type {ProviderCatchUpSettings}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     catchUpSettings?: ProviderCatchUpSettings;
     /**
      * 
      * @type {ProviderWaitingListSettings}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     waitingListSettings?: ProviderWaitingListSettings;
     /**
      * 
      * @type {ProviderNotificationSettings}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     notificationSettings?: ProviderNotificationSettings;
     /**
      * 
      * @type {Array<Category>}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     categories?: Array<Category>;
     /**
      * 
      * @type {Array<Type>}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     types?: Array<Type>;
     /**
      * 
      * @type {Array<Type>}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     facilities?: Array<Type>;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     termsAndConditions?: string;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     privacyPolicy?: string;
     /**
      * 
      * @type {string}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     photoConsent?: string;
     /**
      * 
      * @type {Date}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     connectedAt?: Date;
     /**
      * 
      * @type {Array<Term>}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     terms?: Array<Term>;
     /**
      * 
      * @type {Array<Venue>}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     venues?: Array<Venue>;
     /**
      * 
      * @type {Array<Stage>}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     stages?: Array<Stage>;
     /**
      * 
      * @type {Array<Product>}
-     * @memberof Provider
+     * @memberof ProviderWithType
      */
     vouchers?: Array<Product>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProviderWithType
+     */
+    type: ProviderWithTypeTypeEnum;
 }
 
+
 /**
- * Check if a given object implements the Provider interface.
+ * @export
  */
-export function instanceOfProvider(value: object): value is Provider {
+export const ProviderWithTypeTypeEnum = {
+    Provider: 'provider'
+} as const;
+export type ProviderWithTypeTypeEnum = typeof ProviderWithTypeTypeEnum[keyof typeof ProviderWithTypeTypeEnum];
+
+
+/**
+ * Check if a given object implements the ProviderWithType interface.
+ */
+export function instanceOfProviderWithType(value: object): value is ProviderWithType {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('handle' in value) || value['handle'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
 
-export function ProviderFromJSON(json: any): Provider {
-    return ProviderFromJSONTyped(json, false);
+export function ProviderWithTypeFromJSON(json: any): ProviderWithType {
+    return ProviderWithTypeFromJSONTyped(json, false);
 }
 
-export function ProviderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Provider {
+export function ProviderWithTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProviderWithType {
     if (json == null) {
         return json;
     }
@@ -315,14 +332,15 @@ export function ProviderFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'venues': json['venues'] == null ? undefined : ((json['venues'] as Array<any>).map(VenueFromJSON)),
         'stages': json['stages'] == null ? undefined : ((json['stages'] as Array<any>).map(StageFromJSON)),
         'vouchers': json['vouchers'] == null ? undefined : ((json['vouchers'] as Array<any>).map(ProductFromJSON)),
+        'type': json['type'],
     };
 }
 
-export function ProviderToJSON(json: any): Provider {
-    return ProviderToJSONTyped(json, false);
+export function ProviderWithTypeToJSON(json: any): ProviderWithType {
+    return ProviderWithTypeToJSONTyped(json, false);
 }
 
-export function ProviderToJSONTyped(value?: Provider | null, ignoreDiscriminator: boolean = false): any {
+export function ProviderWithTypeToJSONTyped(value?: ProviderWithType | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -358,6 +376,7 @@ export function ProviderToJSONTyped(value?: Provider | null, ignoreDiscriminator
         'venues': value['venues'] == null ? undefined : ((value['venues'] as Array<any>).map(VenueToJSON)),
         'stages': value['stages'] == null ? undefined : ((value['stages'] as Array<any>).map(StageToJSON)),
         'vouchers': value['vouchers'] == null ? undefined : ((value['vouchers'] as Array<any>).map(ProductToJSON)),
+        'type': value['type'],
     };
 }
 

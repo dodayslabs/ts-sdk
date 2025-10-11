@@ -30,7 +30,7 @@ export interface Product {
      * @type {string}
      * @memberof Product
      */
-    name?: ProductNameEnum;
+    name?: string;
     /**
      * 
      * @type {number}
@@ -38,18 +38,6 @@ export interface Product {
      */
     cost?: number;
 }
-
-
-/**
- * @export
- */
-export const ProductNameEnum = {
-    PerSession: 'perSession',
-    PerTrial: 'perTrial',
-    FixedCost: 'fixedCost'
-} as const;
-export type ProductNameEnum = typeof ProductNameEnum[keyof typeof ProductNameEnum];
-
 
 /**
  * Check if a given object implements the Product interface.

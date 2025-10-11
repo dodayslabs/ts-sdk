@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import type { Class } from './Class';
+import type { ClassWithType } from './ClassWithType';
 import {
-    instanceOfClass,
-    ClassFromJSON,
-    ClassFromJSONTyped,
-    ClassToJSON,
-} from './Class';
-import type { Provider } from './Provider';
+    instanceOfClassWithType,
+    ClassWithTypeFromJSON,
+    ClassWithTypeFromJSONTyped,
+    ClassWithTypeToJSON,
+} from './ClassWithType';
+import type { ProviderWithType } from './ProviderWithType';
 import {
-    instanceOfProvider,
-    ProviderFromJSON,
-    ProviderFromJSONTyped,
-    ProviderToJSON,
-} from './Provider';
+    instanceOfProviderWithType,
+    ProviderWithTypeFromJSON,
+    ProviderWithTypeFromJSONTyped,
+    ProviderWithTypeToJSON,
+} from './ProviderWithType';
 
 /**
  * @type GetDiscover200ResponseDataInner
  * 
  * @export
  */
-export type GetDiscover200ResponseDataInner = { type: 'activity' } & Class | { type: 'provider' } & Provider;
+export type GetDiscover200ResponseDataInner = { type: 'activity' } & ClassWithType | { type: 'provider' } & ProviderWithType;
 
 export function GetDiscover200ResponseDataInnerFromJSON(json: any): GetDiscover200ResponseDataInner {
     return GetDiscover200ResponseDataInnerFromJSONTyped(json, false);
@@ -44,9 +44,9 @@ export function GetDiscover200ResponseDataInnerFromJSONTyped(json: any, ignoreDi
     }
     switch (json['type']) {
         case 'activity':
-            return Object.assign({}, ClassFromJSONTyped(json, true), { type: 'activity' } as const);
+            return Object.assign({}, ClassWithTypeFromJSONTyped(json, true), { type: 'activity' } as const);
         case 'provider':
-            return Object.assign({}, ProviderFromJSONTyped(json, true), { type: 'provider' } as const);
+            return Object.assign({}, ProviderWithTypeFromJSONTyped(json, true), { type: 'provider' } as const);
         default:
             return json;
     }
@@ -62,9 +62,9 @@ export function GetDiscover200ResponseDataInnerToJSONTyped(value?: GetDiscover20
     }
     switch (value['type']) {
         case 'activity':
-            return Object.assign({}, ClassToJSON(value), { type: 'activity' } as const);
+            return Object.assign({}, ClassWithTypeToJSON(value), { type: 'activity' } as const);
         case 'provider':
-            return Object.assign({}, ProviderToJSON(value), { type: 'provider' } as const);
+            return Object.assign({}, ProviderWithTypeToJSON(value), { type: 'provider' } as const);
         default:
             return value;
     }

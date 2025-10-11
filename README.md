@@ -18,7 +18,7 @@ yarn add @dodayslabs/ts-sdk
 import { Configuration, DefaultApi } from "@dodayslabs/ts-sdk";
 
 const config = new Configuration({
-  basePath: "https://api.dodays.com",
+  basePath: "https://api.dodays.co.uk",
   apiKey: "your-api-key",
 });
 
@@ -34,7 +34,7 @@ This SDK is automatically generated from the DoDays OpenAPI specification using 
 
 ### Prerequisites
 
-- Node.js v24.4.1 (use `nvm use` to switch to the correct version)
+- Node.js v24.9.0 (use `nvm use` to switch to the correct version)
 - pnpm 10.17.1+
 
 ### Setup
@@ -50,18 +50,18 @@ pnpm build
 ### Available Scripts
 
 - `pnpm build` - Generate SDK from OpenAPI spec and compile TypeScript
-- `pnpm generate` - Generate SDK code from `../docs/openapi.yaml`
+- `pnpm generate` - Generate SDK code from [docs/openapi.yaml](https://github.com/dodayslabs/docs)
 - `pnpm compile` - Compile TypeScript to JavaScript
 
 ### Project Structure
 
-- **Source of Truth**: OpenAPI specification at `../docs/openapi.yaml`
+- **Source of Truth**: OpenAPI specification at [docs/openapi.yaml](https://github.com/dodayslabs/docs)
 - **Generated Code**: `src/` directory (do not edit manually)
 - **Build Output**: `dist/` directory (published to npm)
 
 ### Making Changes
 
-1. Update the OpenAPI specification at `../docs/openapi.yaml`
+1. Update the OpenAPI specification at [docs/openapi.yaml](https://github.com/dodayslabs/docs)
 2. Run `pnpm build` to regenerate and compile the SDK
 3. The generated code in `src/` will be automatically updated
 
@@ -79,4 +79,4 @@ See LICENSE
 
 ## Repository
 
-[github.com/dodayslabs/ts-sdk](https://github.com/dodayslabs/ts-sdk)
+[dodayslabs/ts-sdk](https://github.com/dodayslabs/ts-sdk)
