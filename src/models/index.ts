@@ -6,6 +6,7 @@ export * from './Category';
 export * from './Class';
 export * from './ClassWithType';
 export * from './Discount';
+export * from './Facility';
 export * from './GetAbilities200Response';
 export * from './GetAvailableCatchUpSessions200Response';
 export * from './GetBookingCalculation200Response';

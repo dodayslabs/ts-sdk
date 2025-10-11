@@ -34,6 +34,7 @@ models/Category.ts
 models/Class.ts
 models/ClassWithType.ts
 models/Discount.ts
+models/Facility.ts
 models/GetAbilities200Response.ts
 models/GetAvailableCatchUpSessions200Response.ts
 models/GetBookingCalculation200Response.ts

@@ -62,6 +62,13 @@ import {
     StageToJSON,
     StageToJSONTyped,
 } from './Stage';
+import type { Facility } from './Facility';
+import {
+    FacilityFromJSON,
+    FacilityFromJSONTyped,
+    FacilityToJSON,
+    FacilityToJSONTyped,
+} from './Facility';
 import type { ProviderNotificationSettings } from './ProviderNotificationSettings';
 import {
     ProviderNotificationSettingsFromJSON,
@@ -212,10 +219,10 @@ export interface ProviderWithType {
     types?: Array<Type>;
     /**
      * 
-     * @type {Array<Type>}
+     * @type {Array<Facility>}
      * @memberof ProviderWithType
      */
-    facilities?: Array<Type>;
+    facilities?: Array<Facility>;
     /**
      * 
      * @type {string}
@@ -323,7 +330,7 @@ export function ProviderWithTypeFromJSONTyped(json: any, ignoreDiscriminator: bo
         'notificationSettings': json['notification_settings'] == null ? undefined : ProviderNotificationSettingsFromJSON(json['notification_settings']),
         'categories': json['categories'] == null ? undefined : ((json['categories'] as Array<any>).map(CategoryFromJSON)),
         'types': json['types'] == null ? undefined : ((json['types'] as Array<any>).map(TypeFromJSON)),
-        'facilities': json['facilities'] == null ? undefined : ((json['facilities'] as Array<any>).map(TypeFromJSON)),
+        'facilities': json['facilities'] == null ? undefined : ((json['facilities'] as Array<any>).map(FacilityFromJSON)),
         'termsAndConditions': json['terms_and_conditions'] == null ? undefined : json['terms_and_conditions'],
         'privacyPolicy': json['privacy_policy'] == null ? undefined : json['privacy_policy'],
         'photoConsent': json['photo_consent'] == null ? undefined : json['photo_consent'],
@@ -367,7 +374,7 @@ export function ProviderWithTypeToJSONTyped(value?: ProviderWithType | null, ign
         'notification_settings': ProviderNotificationSettingsToJSON(value['notificationSettings']),
         'categories': value['categories'] == null ? undefined : ((value['categories'] as Array<any>).map(CategoryToJSON)),
         'types': value['types'] == null ? undefined : ((value['types'] as Array<any>).map(TypeToJSON)),
-        'facilities': value['facilities'] == null ? undefined : ((value['facilities'] as Array<any>).map(TypeToJSON)),
+        'facilities': value['facilities'] == null ? undefined : ((value['facilities'] as Array<any>).map(FacilityToJSON)),
         'terms_and_conditions': value['termsAndConditions'],
         'privacy_policy': value['privacyPolicy'],
         'photo_consent': value['photoConsent'],
