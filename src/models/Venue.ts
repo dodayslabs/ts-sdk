@@ -24,13 +24,13 @@ export interface Venue {
      * @type {number}
      * @memberof Venue
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Venue
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
@@ -42,7 +42,25 @@ export interface Venue {
      * @type {string}
      * @memberof Venue
      */
-    address?: string;
+    address: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Venue
+     */
+    latitude: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Venue
+     */
+    longitude: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Venue
+     */
+    distance?: number;
     /**
      * 
      * @type {string}
@@ -73,6 +91,11 @@ export interface Venue {
  * Check if a given object implements the Venue interface.
  */
 export function instanceOfVenue(value: object): value is Venue {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('address' in value) || value['address'] === undefined) return false;
+    if (!('latitude' in value) || value['latitude'] === undefined) return false;
+    if (!('longitude' in value) || value['longitude'] === undefined) return false;
     return true;
 }
 
@@ -86,10 +109,13 @@ export function VenueFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ven
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'name': json['name'] == null ? undefined : json['name'],
+        'id': json['id'],
+        'name': json['name'],
         'image': json['image'] == null ? undefined : json['image'],
-        'address': json['address'] == null ? undefined : json['address'],
+        'address': json['address'],
+        'latitude': json['latitude'],
+        'longitude': json['longitude'],
+        'distance': json['distance'] == null ? undefined : json['distance'],
         'information': json['information'] == null ? undefined : json['information'],
         'parking': json['parking'] == null ? undefined : json['parking'],
         'landmarks': json['landmarks'] == null ? undefined : json['landmarks'],
@@ -112,6 +138,9 @@ export function VenueToJSONTyped(value?: Venue | null, ignoreDiscriminator: bool
         'name': value['name'],
         'image': value['image'],
         'address': value['address'],
+        'latitude': value['latitude'],
+        'longitude': value['longitude'],
+        'distance': value['distance'],
         'information': value['information'],
         'parking': value['parking'],
         'landmarks': value['landmarks'],

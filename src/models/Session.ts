@@ -24,13 +24,13 @@ export interface Session {
      * @type {number}
      * @memberof Session
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {Date}
      * @memberof Session
      */
-    dateTime?: Date;
+    dateTime: Date;
     /**
      * 
      * @type {Date}
@@ -54,19 +54,23 @@ export interface Session {
      * @type {boolean}
      * @memberof Session
      */
-    cancelled?: boolean;
+    cancelled: boolean;
     /**
      * 
      * @type {number}
      * @memberof Session
      */
-    spacesCount?: number;
+    spacesCount: number;
 }
 
 /**
  * Check if a given object implements the Session interface.
  */
 export function instanceOfSession(value: object): value is Session {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('dateTime' in value) || value['dateTime'] === undefined) return false;
+    if (!('cancelled' in value) || value['cancelled'] === undefined) return false;
+    if (!('spacesCount' in value) || value['spacesCount'] === undefined) return false;
     return true;
 }
 
@@ -80,13 +84,13 @@ export function SessionFromJSONTyped(json: any, ignoreDiscriminator: boolean): S
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'dateTime': json['date_time'] == null ? undefined : (new Date(json['date_time'])),
+        'id': json['id'],
+        'dateTime': (new Date(json['date_time'])),
         'movedFrom': json['moved_from'] == null ? undefined : (new Date(json['moved_from'])),
         'teacherName': json['teacher_name'] == null ? undefined : json['teacher_name'],
         'venueName': json['venue_name'] == null ? undefined : json['venue_name'],
-        'cancelled': json['cancelled'] == null ? undefined : json['cancelled'],
-        'spacesCount': json['spaces_count'] == null ? undefined : json['spaces_count'],
+        'cancelled': json['cancelled'],
+        'spacesCount': json['spaces_count'],
     };
 }
 
@@ -102,7 +106,7 @@ export function SessionToJSONTyped(value?: Session | null, ignoreDiscriminator: 
     return {
         
         'id': value['id'],
-        'date_time': value['dateTime'] == null ? undefined : ((value['dateTime']).toISOString()),
+        'date_time': ((value['dateTime']).toISOString()),
         'moved_from': value['movedFrom'] == null ? undefined : ((value['movedFrom']).toISOString()),
         'teacher_name': value['teacherName'],
         'venue_name': value['venueName'],

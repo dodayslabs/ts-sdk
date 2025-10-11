@@ -8,6 +8,7 @@ apis/CatchUpsApi.ts
 apis/ClassesApi.ts
 apis/CouponsApi.ts
 apis/DaysApi.ts
+apis/DiscoverApi.ts
 apis/LinksApi.ts
 apis/MetricsApi.ts
 apis/PaymentIntentsApi.ts
@@ -29,8 +30,11 @@ apis/index.ts
 index.ts
 models/Booking.ts
 models/BookingSession.ts
+models/Category.ts
 models/Class.ts
+models/ClassWithType.ts
 models/Discount.ts
+models/Facility.ts
 models/GetAbilities200Response.ts
 models/GetAvailableCatchUpSessions200Response.ts
 models/GetBookingCalculation200Response.ts
@@ -38,6 +42,9 @@ models/GetBookingSessions200Response.ts
 models/GetBookings200Response.ts
 models/GetClass200Response.ts
 models/GetClasses200Response.ts
+models/GetDiscover200Response.ts
+models/GetDiscover200ResponseDataInner.ts
+models/GetDiscoverFilterBoundsParameter.ts
 models/GetLink200Response.ts
 models/GetMetric200Response.ts
 models/GetMetric200ResponseOneOf.ts
@@ -114,6 +121,7 @@ models/ProviderBookingSettings.ts
 models/ProviderCatchUpSettings.ts
 models/ProviderNotificationSettings.ts
 models/ProviderWaitingListSettings.ts
+models/ProviderWithType.ts
 models/Session.ts
 models/Stage.ts
 models/Student.ts
@@ -121,6 +129,7 @@ models/StudentGoal.ts
 models/StudentStage.ts
 models/Subscription.ts
 models/Term.ts
+models/Type.ts
 models/User.ts
 models/Venue.ts
 models/Voucher.ts

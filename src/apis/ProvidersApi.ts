@@ -27,6 +27,7 @@ import {
 
 export interface GetProviderRequest {
     providerId: string;
+    include?: string;
 }
 
 export interface GetProvidersRequest {
@@ -51,6 +52,10 @@ export class ProvidersApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['include'] != null) {
+            queryParameters['include'] = requestParameters['include'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 

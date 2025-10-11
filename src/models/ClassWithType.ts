@@ -31,205 +31,220 @@ import {
 /**
  * 
  * @export
- * @interface Class
+ * @interface ClassWithType
  */
-export interface Class {
+export interface ClassWithType {
     /**
      * 
      * @type {number}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     id: number;
     /**
      * 
      * @type {number}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     activityId?: number;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     image?: string;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     description?: string;
     /**
      * 
      * @type {number}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     sessionCost?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     trialAllowed?: boolean;
     /**
      * 
      * @type {number}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     trialCost?: number;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     ageRange?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     sell?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     term?: string;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     teacher?: string;
     /**
      * 
      * @type {number}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     venueId?: number;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     venueName?: string;
     /**
      * 
      * @type {number}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     providerId?: number;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     providerName?: string;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     providerClassImage?: string;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     providerHandle?: string;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     stage?: string;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     stageClassImage?: string;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     venueImage?: string;
     /**
      * 
      * @type {string}
-     * @memberof Class
+     * @memberof ClassWithType
      */
-    ability?: ClassAbilityEnum;
+    ability?: ClassWithTypeAbilityEnum;
     /**
      * 
      * @type {number}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     spacesCount?: number;
     /**
      * 
      * @type {number}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     invitedWaiteesCount?: number;
     /**
      * 
      * @type {Date}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     nextSession?: Date;
     /**
      * 
      * @type {Date}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     nextSessionEndsAt?: Date;
     /**
      * 
      * @type {Array<Session>}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     sessions?: Array<Session>;
     /**
      * 
      * @type {Venue}
-     * @memberof Class
+     * @memberof ClassWithType
      */
     venue?: Venue;
+    /**
+     * 
+     * @type {string}
+     * @memberof ClassWithType
+     */
+    type: ClassWithTypeTypeEnum;
 }
 
 
 /**
  * @export
  */
-export const ClassAbilityEnum = {
+export const ClassWithTypeAbilityEnum = {
     Beginner: 'Beginner',
     Intermediate: 'Intermediate',
     Advanced: 'Advanced'
 } as const;
-export type ClassAbilityEnum = typeof ClassAbilityEnum[keyof typeof ClassAbilityEnum];
+export type ClassWithTypeAbilityEnum = typeof ClassWithTypeAbilityEnum[keyof typeof ClassWithTypeAbilityEnum];
+
+/**
+ * @export
+ */
+export const ClassWithTypeTypeEnum = {
+    Activity: 'activity'
+} as const;
+export type ClassWithTypeTypeEnum = typeof ClassWithTypeTypeEnum[keyof typeof ClassWithTypeTypeEnum];
 
 
 /**
- * Check if a given object implements the Class interface.
+ * Check if a given object implements the ClassWithType interface.
  */
-export function instanceOfClass(value: object): value is Class {
+export function instanceOfClassWithType(value: object): value is ClassWithType {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
 
-export function ClassFromJSON(json: any): Class {
-    return ClassFromJSONTyped(json, false);
+export function ClassWithTypeFromJSON(json: any): ClassWithType {
+    return ClassWithTypeFromJSONTyped(json, false);
 }
 
-export function ClassFromJSONTyped(json: any, ignoreDiscriminator: boolean): Class {
+export function ClassWithTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): ClassWithType {
     if (json == null) {
         return json;
     }
@@ -263,14 +278,15 @@ export function ClassFromJSONTyped(json: any, ignoreDiscriminator: boolean): Cla
         'nextSessionEndsAt': json['next_session_ends_at'] == null ? undefined : (new Date(json['next_session_ends_at'])),
         'sessions': json['sessions'] == null ? undefined : ((json['sessions'] as Array<any>).map(SessionFromJSON)),
         'venue': json['venue'] == null ? undefined : VenueFromJSON(json['venue']),
+        'type': json['type'],
     };
 }
 
-export function ClassToJSON(json: any): Class {
-    return ClassToJSONTyped(json, false);
+export function ClassWithTypeToJSON(json: any): ClassWithType {
+    return ClassWithTypeToJSONTyped(json, false);
 }
 
-export function ClassToJSONTyped(value?: Class | null, ignoreDiscriminator: boolean = false): any {
+export function ClassWithTypeToJSONTyped(value?: ClassWithType | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -305,6 +321,7 @@ export function ClassToJSONTyped(value?: Class | null, ignoreDiscriminator: bool
         'next_session_ends_at': value['nextSessionEndsAt'] == null ? undefined : ((value['nextSessionEndsAt']).toISOString()),
         'sessions': value['sessions'] == null ? undefined : ((value['sessions'] as Array<any>).map(SessionToJSON)),
         'venue': VenueToJSON(value['venue']),
+        'type': value['type'],
     };
 }
 

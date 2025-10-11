@@ -1,7 +1,7 @@
 {
   "name": "@dodayslabs/ts-sdk",
-  "version": "0.1.1",
-  "license": "SEE LICENSE IN LICENSE",
+  "version": "0.2.0-feat-discovery.8",
+  "license": "See LICENSE",
   "author": "Sam Bindoff",
   "description": "Official DoDays TypeScript SDK",
   "keywords": [
