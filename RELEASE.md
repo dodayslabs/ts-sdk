@@ -3,6 +3,7 @@
 ## 0. Pre-releases during development
 
 npm version 0.x.0-feat-branch.1
+npm publish --tag feat-branch
 
 ## 1. Ensure everything is committed on feat/branch
 
