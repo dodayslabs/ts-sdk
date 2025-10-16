@@ -5,11 +5,7 @@ Official TypeScript SDK for the DoDays API, providing type-safe access to all Do
 ## Installation
 
 ```bash
-npm install @dodayslabs/ts-sdk
-# or
 pnpm add @dodayslabs/ts-sdk
-# or
-yarn add @dodayslabs/ts-sdk
 ```
 
 ## Usage
