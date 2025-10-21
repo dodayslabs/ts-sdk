@@ -42,12 +42,6 @@ export interface Class {
     id: number;
     /**
      * 
-     * @type {number}
-     * @memberof Class
-     */
-    activityId?: number;
-    /**
-     * 
      * @type {string}
      * @memberof Class
      */
@@ -96,30 +90,6 @@ export interface Class {
     sell?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof Class
-     */
-    term?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Class
-     */
-    teacher?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof Class
-     */
-    venueId?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Class
-     */
-    venueName?: string;
-    /**
-     * 
      * @type {number}
      * @memberof Class
      */
@@ -144,28 +114,34 @@ export interface Class {
     providerHandle?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof Class
+     */
+    providerAgeRange?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof Class
      */
-    stage?: string;
+    termName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Class
+     */
+    teacherName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Class
+     */
+    stageName?: string;
     /**
      * 
      * @type {string}
      * @memberof Class
      */
     stageClassImage?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Class
-     */
-    venueImage?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Class
-     */
-    ability?: ClassAbilityEnum;
     /**
      * 
      * @type {number}
@@ -201,20 +177,8 @@ export interface Class {
      * @type {Venue}
      * @memberof Class
      */
-    venue?: Venue;
+    venue: Venue;
 }
-
-
-/**
- * @export
- */
-export const ClassAbilityEnum = {
-    Beginner: 'Beginner',
-    Intermediate: 'Intermediate',
-    Advanced: 'Advanced'
-} as const;
-export type ClassAbilityEnum = typeof ClassAbilityEnum[keyof typeof ClassAbilityEnum];
-
 
 /**
  * Check if a given object implements the Class interface.
@@ -222,6 +186,7 @@ export type ClassAbilityEnum = typeof ClassAbilityEnum[keyof typeof ClassAbility
 export function instanceOfClass(value: object): value is Class {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('venue' in value) || value['venue'] === undefined) return false;
     return true;
 }
 
@@ -236,7 +201,6 @@ export function ClassFromJSONTyped(json: any, ignoreDiscriminator: boolean): Cla
     return {
         
         'id': json['id'],
-        'activityId': json['activity_id'] == null ? undefined : json['activity_id'],
         'name': json['name'],
         'image': json['image'] == null ? undefined : json['image'],
         'description': json['description'] == null ? undefined : json['description'],
@@ -245,24 +209,21 @@ export function ClassFromJSONTyped(json: any, ignoreDiscriminator: boolean): Cla
         'trialCost': json['trial_cost'] == null ? undefined : json['trial_cost'],
         'ageRange': json['age_range'] == null ? undefined : json['age_range'],
         'sell': json['sell'] == null ? undefined : json['sell'],
-        'term': json['term'] == null ? undefined : json['term'],
-        'teacher': json['teacher'] == null ? undefined : json['teacher'],
-        'venueId': json['venue_id'] == null ? undefined : json['venue_id'],
-        'venueName': json['venue_name'] == null ? undefined : json['venue_name'],
         'providerId': json['provider_id'] == null ? undefined : json['provider_id'],
         'providerName': json['provider_name'] == null ? undefined : json['provider_name'],
         'providerClassImage': json['provider_class_image'] == null ? undefined : json['provider_class_image'],
         'providerHandle': json['provider_handle'] == null ? undefined : json['provider_handle'],
-        'stage': json['stage'] == null ? undefined : json['stage'],
+        'providerAgeRange': json['provider_age_range'] == null ? undefined : json['provider_age_range'],
+        'termName': json['term_name'] == null ? undefined : json['term_name'],
+        'teacherName': json['teacher_name'] == null ? undefined : json['teacher_name'],
+        'stageName': json['stage_name'] == null ? undefined : json['stage_name'],
         'stageClassImage': json['stage_class_image'] == null ? undefined : json['stage_class_image'],
-        'venueImage': json['venue_image'] == null ? undefined : json['venue_image'],
-        'ability': json['ability'] == null ? undefined : json['ability'],
         'spacesCount': json['spaces_count'] == null ? undefined : json['spaces_count'],
         'invitedWaiteesCount': json['invited_waitees_count'] == null ? undefined : json['invited_waitees_count'],
         'nextSession': json['next_session'] == null ? undefined : (new Date(json['next_session'])),
         'nextSessionEndsAt': json['next_session_ends_at'] == null ? undefined : (new Date(json['next_session_ends_at'])),
         'sessions': json['sessions'] == null ? undefined : ((json['sessions'] as Array<any>).map(SessionFromJSON)),
-        'venue': json['venue'] == null ? undefined : VenueFromJSON(json['venue']),
+        'venue': VenueFromJSON(json['venue']),
     };
 }
 
@@ -278,7 +239,6 @@ export function ClassToJSONTyped(value?: Class | null, ignoreDiscriminator: bool
     return {
         
         'id': value['id'],
-        'activity_id': value['activityId'],
         'name': value['name'],
         'image': value['image'],
         'description': value['description'],
@@ -287,18 +247,15 @@ export function ClassToJSONTyped(value?: Class | null, ignoreDiscriminator: bool
         'trial_cost': value['trialCost'],
         'age_range': value['ageRange'],
         'sell': value['sell'],
-        'term': value['term'],
-        'teacher': value['teacher'],
-        'venue_id': value['venueId'],
-        'venue_name': value['venueName'],
         'provider_id': value['providerId'],
         'provider_name': value['providerName'],
         'provider_class_image': value['providerClassImage'],
         'provider_handle': value['providerHandle'],
-        'stage': value['stage'],
+        'provider_age_range': value['providerAgeRange'],
+        'term_name': value['termName'],
+        'teacher_name': value['teacherName'],
+        'stage_name': value['stageName'],
         'stage_class_image': value['stageClassImage'],
-        'venue_image': value['venueImage'],
-        'ability': value['ability'],
         'spaces_count': value['spacesCount'],
         'invited_waitees_count': value['invitedWaiteesCount'],
         'next_session': value['nextSession'] == null ? undefined : ((value['nextSession']).toISOString()),

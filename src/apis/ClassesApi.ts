@@ -38,6 +38,8 @@ export interface GetClassesRequest {
     filterTerm?: number;
     filterVenue?: number;
     filterStage?: number;
+    filterLatitude?: number;
+    filterLongitude?: number;
     filterAgeInterval?: string;
     filterAgeMin?: number;
     filterAgeMax?: number;
@@ -149,6 +151,14 @@ export class ClassesApi extends runtime.BaseAPI {
 
         if (requestParameters['filterStage'] != null) {
             queryParameters['filter[stage]'] = requestParameters['filterStage'];
+        }
+
+        if (requestParameters['filterLatitude'] != null) {
+            queryParameters['filter[latitude]'] = requestParameters['filterLatitude'];
+        }
+
+        if (requestParameters['filterLongitude'] != null) {
+            queryParameters['filter[longitude]'] = requestParameters['filterLongitude'];
         }
 
         if (requestParameters['filterAgeInterval'] != null) {

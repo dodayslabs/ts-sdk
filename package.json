@@ -1,6 +1,6 @@
 {
   "name": "@dodayslabs/ts-sdk",
-  "version": "0.2.0",
+  "version": "0.3.0-feat-activities.3",
   "license": "See LICENSE",
   "author": "Sam Bindoff",
   "description": "Official DoDays TypeScript SDK",
