@@ -63,7 +63,7 @@ export interface ClassWithType {
      * @type {number}
      * @memberof ClassWithType
      */
-    sessionCost?: number;
+    sessionCost: number;
     /**
      * 
      * @type {boolean}
@@ -87,19 +87,19 @@ export interface ClassWithType {
      * @type {boolean}
      * @memberof ClassWithType
      */
-    sell?: boolean;
+    sell: boolean;
     /**
      * 
      * @type {number}
      * @memberof ClassWithType
      */
-    providerId?: number;
+    providerId: number;
     /**
      * 
      * @type {string}
      * @memberof ClassWithType
      */
-    providerName?: string;
+    providerName: string;
     /**
      * 
      * @type {string}
@@ -111,7 +111,7 @@ export interface ClassWithType {
      * @type {string}
      * @memberof ClassWithType
      */
-    providerHandle?: string;
+    providerHandle: string;
     /**
      * 
      * @type {boolean}
@@ -123,13 +123,13 @@ export interface ClassWithType {
      * @type {string}
      * @memberof ClassWithType
      */
-    termName?: string;
+    termName: string;
     /**
      * 
      * @type {string}
      * @memberof ClassWithType
      */
-    teacherName?: string;
+    teacherName: string;
     /**
      * 
      * @type {string}
@@ -147,7 +147,7 @@ export interface ClassWithType {
      * @type {number}
      * @memberof ClassWithType
      */
-    spacesCount?: number;
+    spacesCount: number;
     /**
      * 
      * @type {number}
@@ -202,6 +202,14 @@ export type ClassWithTypeTypeEnum = typeof ClassWithTypeTypeEnum[keyof typeof Cl
 export function instanceOfClassWithType(value: object): value is ClassWithType {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('sessionCost' in value) || value['sessionCost'] === undefined) return false;
+    if (!('sell' in value) || value['sell'] === undefined) return false;
+    if (!('providerId' in value) || value['providerId'] === undefined) return false;
+    if (!('providerName' in value) || value['providerName'] === undefined) return false;
+    if (!('providerHandle' in value) || value['providerHandle'] === undefined) return false;
+    if (!('termName' in value) || value['termName'] === undefined) return false;
+    if (!('teacherName' in value) || value['teacherName'] === undefined) return false;
+    if (!('spacesCount' in value) || value['spacesCount'] === undefined) return false;
     if (!('venue' in value) || value['venue'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     return true;
@@ -221,21 +229,21 @@ export function ClassWithTypeFromJSONTyped(json: any, ignoreDiscriminator: boole
         'name': json['name'],
         'image': json['image'] == null ? undefined : json['image'],
         'description': json['description'] == null ? undefined : json['description'],
-        'sessionCost': json['session_cost'] == null ? undefined : json['session_cost'],
+        'sessionCost': json['session_cost'],
         'trialAllowed': json['trial_allowed'] == null ? undefined : json['trial_allowed'],
         'trialCost': json['trial_cost'] == null ? undefined : json['trial_cost'],
         'ageRange': json['age_range'] == null ? undefined : json['age_range'],
-        'sell': json['sell'] == null ? undefined : json['sell'],
-        'providerId': json['provider_id'] == null ? undefined : json['provider_id'],
-        'providerName': json['provider_name'] == null ? undefined : json['provider_name'],
+        'sell': json['sell'],
+        'providerId': json['provider_id'],
+        'providerName': json['provider_name'],
         'providerClassImage': json['provider_class_image'] == null ? undefined : json['provider_class_image'],
-        'providerHandle': json['provider_handle'] == null ? undefined : json['provider_handle'],
+        'providerHandle': json['provider_handle'],
         'providerAgeRange': json['provider_age_range'] == null ? undefined : json['provider_age_range'],
-        'termName': json['term_name'] == null ? undefined : json['term_name'],
-        'teacherName': json['teacher_name'] == null ? undefined : json['teacher_name'],
+        'termName': json['term_name'],
+        'teacherName': json['teacher_name'],
         'stageName': json['stage_name'] == null ? undefined : json['stage_name'],
         'stageClassImage': json['stage_class_image'] == null ? undefined : json['stage_class_image'],
-        'spacesCount': json['spaces_count'] == null ? undefined : json['spaces_count'],
+        'spacesCount': json['spaces_count'],
         'invitedWaiteesCount': json['invited_waitees_count'] == null ? undefined : json['invited_waitees_count'],
         'nextSession': json['next_session'] == null ? undefined : (new Date(json['next_session'])),
         'nextSessionEndsAt': json['next_session_ends_at'] == null ? undefined : (new Date(json['next_session_ends_at'])),

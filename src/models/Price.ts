@@ -32,19 +32,19 @@ export interface Price {
      * @type {number}
      * @memberof Price
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Price
      */
-    type?: PriceTypeEnum;
+    type: PriceTypeEnum;
     /**
      * 
      * @type {string}
      * @memberof Price
      */
-    paymentMethod?: PricePaymentMethodEnum;
+    paymentMethod: PricePaymentMethodEnum;
     /**
      * 
      * @type {number}
@@ -87,7 +87,9 @@ export type PriceTypeEnum = typeof PriceTypeEnum[keyof typeof PriceTypeEnum];
  */
 export const PricePaymentMethodEnum = {
     Card: 'card',
-    Subscription: 'subscription'
+    Subscription: 'subscription',
+    Bank: 'bank',
+    Bacs: 'bacs'
 } as const;
 export type PricePaymentMethodEnum = typeof PricePaymentMethodEnum[keyof typeof PricePaymentMethodEnum];
 
@@ -106,6 +108,9 @@ export type PriceSessionSelectionTypeEnum = typeof PriceSessionSelectionTypeEnum
  * Check if a given object implements the Price interface.
  */
 export function instanceOfPrice(value: object): value is Price {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('paymentMethod' in value) || value['paymentMethod'] === undefined) return false;
     return true;
 }
 
@@ -119,9 +124,9 @@ export function PriceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Pri
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'type': json['type'] == null ? undefined : json['type'],
-        'paymentMethod': json['payment_method'] == null ? undefined : json['payment_method'],
+        'id': json['id'],
+        'type': json['type'],
+        'paymentMethod': json['payment_method'],
         'fixedCost': json['fixed_cost'] == null ? undefined : json['fixed_cost'],
         'sessionLimit': json['session_limit'] == null ? undefined : json['session_limit'],
         'sessionSelectionType': json['session_selection_type'] == null ? undefined : json['session_selection_type'],

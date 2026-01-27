@@ -24,25 +24,28 @@ export interface Plan {
      * @type {number}
      * @memberof Plan
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {number}
      * @memberof Plan
      */
-    net?: number;
+    net: number;
     /**
      * 
      * @type {number}
      * @memberof Plan
      */
-    gross?: number;
+    gross: number;
 }
 
 /**
  * Check if a given object implements the Plan interface.
  */
 export function instanceOfPlan(value: object): value is Plan {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('net' in value) || value['net'] === undefined) return false;
+    if (!('gross' in value) || value['gross'] === undefined) return false;
     return true;
 }
 
@@ -56,9 +59,9 @@ export function PlanFromJSONTyped(json: any, ignoreDiscriminator: boolean): Plan
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'net': json['net'] == null ? undefined : json['net'],
-        'gross': json['gross'] == null ? undefined : json['gross'],
+        'id': json['id'],
+        'net': json['net'],
+        'gross': json['gross'],
     };
 }
 

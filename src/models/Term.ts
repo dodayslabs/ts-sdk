@@ -24,19 +24,21 @@ export interface Term {
      * @type {number}
      * @memberof Term
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Term
      */
-    name?: string;
+    name: string;
 }
 
 /**
  * Check if a given object implements the Term interface.
  */
 export function instanceOfTerm(value: object): value is Term {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
     return true;
 }
 
@@ -50,8 +52,8 @@ export function TermFromJSONTyped(json: any, ignoreDiscriminator: boolean): Term
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'name': json['name'] == null ? undefined : json['name'],
+        'id': json['id'],
+        'name': json['name'],
     };
 }
 

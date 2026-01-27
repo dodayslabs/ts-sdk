@@ -2,49 +2,55 @@
 
 ## 0. Pre-releases during development
 
+```
+pnpm build
 npm version 0.x.0-feat-branch.1
 npm publish --tag feat-branch
+```
 
-## 1. Ensure everything is committed on feat/branch
-
-git status
+## 1. Squash and merge in GH
 
 ## 2. Switch to main branch
 
+```
 git checkout main
+```
 
 ## 3. Pull latest changes
 
+```
 git pull origin main
+```
 
-## 4. Merge feat/discovery into main
-
-git merge feat/branch
-
-## 5. Update package.json version to 0.x.0 (remove pre-release suffix)
+## 4. Update package.json version
 
 ### You can do this manually or use:
 
+```
 npm version 0.x.0 --no-git-tag-version
+```
+
+## 5. Commit the version update
+
+```
+git add package.json
+git commit -m "Release v0.x.0"
+git push origin main
+```
 
 ## 6. Build the project to ensure everything compiles
 
+```
 pnpm build
+```
 
-## 7. Commit the version update
+## 7. Create tag and publish release in GH
 
-git add package.json
-git commit -m "Release v0.x.0"
+## 8. Publish to npm
 
-## 8. Create and push the version tag
-
-git tag v0.x.0
-git push origin main
-git push origin v0.x.0
-
-## 9. Publish to npm
-
+```
 npm publish
+```
 
 ---
 

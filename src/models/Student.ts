@@ -24,19 +24,19 @@ export interface Student {
      * @type {number}
      * @memberof Student
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Student
      */
-    firstName?: string;
+    firstName: string;
     /**
      * 
      * @type {string}
      * @memberof Student
      */
-    lastName?: string;
+    lastName: string;
     /**
      * 
      * @type {Date}
@@ -61,6 +61,9 @@ export interface Student {
  * Check if a given object implements the Student interface.
  */
 export function instanceOfStudent(value: object): value is Student {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('firstName' in value) || value['firstName'] === undefined) return false;
+    if (!('lastName' in value) || value['lastName'] === undefined) return false;
     return true;
 }
 
@@ -74,9 +77,9 @@ export function StudentFromJSONTyped(json: any, ignoreDiscriminator: boolean): S
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'firstName': json['first_name'] == null ? undefined : json['first_name'],
-        'lastName': json['last_name'] == null ? undefined : json['last_name'],
+        'id': json['id'],
+        'firstName': json['first_name'],
+        'lastName': json['last_name'],
         'dob': json['dob'] == null ? undefined : (new Date(json['dob'])),
         'medical': json['medical'] == null ? undefined : json['medical'],
         'relation': json['relation'] == null ? undefined : json['relation'],

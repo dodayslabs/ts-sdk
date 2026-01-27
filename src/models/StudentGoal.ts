@@ -24,13 +24,13 @@ export interface StudentGoal {
      * @type {number}
      * @memberof StudentGoal
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof StudentGoal
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {Date}
@@ -43,6 +43,8 @@ export interface StudentGoal {
  * Check if a given object implements the StudentGoal interface.
  */
 export function instanceOfStudentGoal(value: object): value is StudentGoal {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
     return true;
 }
 
@@ -56,8 +58,8 @@ export function StudentGoalFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'name': json['name'] == null ? undefined : json['name'],
+        'id': json['id'],
+        'name': json['name'],
         'achievedAt': json['achieved_at'] == null ? undefined : (new Date(json['achieved_at'])),
     };
 }

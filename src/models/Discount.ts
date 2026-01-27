@@ -24,7 +24,7 @@ export interface Discount {
      * @type {number}
      * @memberof Discount
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
@@ -43,6 +43,7 @@ export interface Discount {
  * Check if a given object implements the Discount interface.
  */
 export function instanceOfDiscount(value: object): value is Discount {
+    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -56,7 +57,7 @@ export function DiscountFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
+        'id': json['id'],
         'description': json['description'] == null ? undefined : json['description'],
         'percentOff': json['percent_off'] == null ? undefined : json['percent_off'],
     };

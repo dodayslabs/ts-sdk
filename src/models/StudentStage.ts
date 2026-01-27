@@ -32,25 +32,31 @@ export interface StudentStage {
      * @type {number}
      * @memberof StudentStage
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof StudentStage
      */
-    name?: string;
+    name: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof StudentStage
+     */
+    providerId: number;
     /**
      * 
      * @type {string}
      * @memberof StudentStage
      */
-    providerName?: string;
+    providerName: string;
     /**
      * 
      * @type {boolean}
      * @memberof StudentStage
      */
-    active?: boolean;
+    active: boolean;
     /**
      * 
      * @type {Date}
@@ -62,13 +68,19 @@ export interface StudentStage {
      * @type {Array<StudentGoal>}
      * @memberof StudentStage
      */
-    goals?: Array<StudentGoal>;
+    goals: Array<StudentGoal>;
 }
 
 /**
  * Check if a given object implements the StudentStage interface.
  */
 export function instanceOfStudentStage(value: object): value is StudentStage {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('providerId' in value) || value['providerId'] === undefined) return false;
+    if (!('providerName' in value) || value['providerName'] === undefined) return false;
+    if (!('active' in value) || value['active'] === undefined) return false;
+    if (!('goals' in value) || value['goals'] === undefined) return false;
     return true;
 }
 
@@ -82,12 +94,13 @@ export function StudentStageFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'name': json['name'] == null ? undefined : json['name'],
-        'providerName': json['provider_name'] == null ? undefined : json['provider_name'],
-        'active': json['active'] == null ? undefined : json['active'],
+        'id': json['id'],
+        'name': json['name'],
+        'providerId': json['provider_id'],
+        'providerName': json['provider_name'],
+        'active': json['active'],
         'awardedOn': json['awarded_on'] == null ? undefined : (new Date(json['awarded_on'])),
-        'goals': json['goals'] == null ? undefined : ((json['goals'] as Array<any>).map(StudentGoalFromJSON)),
+        'goals': ((json['goals'] as Array<any>).map(StudentGoalFromJSON)),
     };
 }
 
@@ -104,10 +117,11 @@ export function StudentStageToJSONTyped(value?: StudentStage | null, ignoreDiscr
         
         'id': value['id'],
         'name': value['name'],
+        'provider_id': value['providerId'],
         'provider_name': value['providerName'],
         'active': value['active'],
         'awarded_on': value['awardedOn'] == null ? undefined : ((value['awardedOn']).toISOString().substring(0,10)),
-        'goals': value['goals'] == null ? undefined : ((value['goals'] as Array<any>).map(StudentGoalToJSON)),
+        'goals': ((value['goals'] as Array<any>).map(StudentGoalToJSON)),
     };
 }
 

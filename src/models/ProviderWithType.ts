@@ -144,7 +144,7 @@ export interface ProviderWithType {
      * @type {string}
      * @memberof ProviderWithType
      */
-    email?: string;
+    email: string;
     /**
      * 
      * @type {string}
@@ -168,7 +168,7 @@ export interface ProviderWithType {
      * @type {boolean}
      * @memberof ProviderWithType
      */
-    absorbFee?: boolean;
+    absorbFee: boolean;
     /**
      * 
      * @type {boolean}
@@ -296,6 +296,8 @@ export function instanceOfProviderWithType(value: object): value is ProviderWith
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('handle' in value) || value['handle'] === undefined) return false;
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('absorbFee' in value) || value['absorbFee'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
@@ -317,11 +319,11 @@ export function ProviderWithTypeFromJSONTyped(json: any, ignoreDiscriminator: bo
         'strapline': json['strapline'] == null ? undefined : json['strapline'],
         'description': json['description'] == null ? undefined : json['description'],
         'handle': json['handle'],
-        'email': json['email'] == null ? undefined : json['email'],
+        'email': json['email'],
         'telephone': json['telephone'] == null ? undefined : json['telephone'],
         'website': json['website'] == null ? undefined : json['website'],
         'stripeId': json['stripe_id'] == null ? undefined : json['stripe_id'],
-        'absorbFee': json['absorb_fee'] == null ? undefined : json['absorb_fee'],
+        'absorbFee': json['absorb_fee'],
         'verified': json['verified'] == null ? undefined : json['verified'],
         'featured': json['featured'] == null ? undefined : json['featured'],
         'bookingSettings': json['booking_settings'] == null ? undefined : ProviderBookingSettingsFromJSON(json['booking_settings']),
