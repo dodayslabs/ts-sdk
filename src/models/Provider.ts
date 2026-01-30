@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ProviderPhotoConsent } from './ProviderPhotoConsent';
+import {
+    ProviderPhotoConsentFromJSON,
+    ProviderPhotoConsentFromJSONTyped,
+    ProviderPhotoConsentToJSON,
+    ProviderPhotoConsentToJSONTyped,
+} from './ProviderPhotoConsent';
 import type { Type } from './Type';
 import {
     TypeFromJSON,
@@ -237,10 +244,10 @@ export interface Provider {
     privacyPolicy?: string;
     /**
      * 
-     * @type {string}
+     * @type {ProviderPhotoConsent}
      * @memberof Provider
      */
-    photoConsent?: string;
+    photoConsent?: ProviderPhotoConsent;
     /**
      * 
      * @type {Date}
@@ -318,7 +325,7 @@ export function ProviderFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'facilities': json['facilities'] == null ? undefined : ((json['facilities'] as Array<any>).map(FacilityFromJSON)),
         'termsAndConditions': json['terms_and_conditions'] == null ? undefined : json['terms_and_conditions'],
         'privacyPolicy': json['privacy_policy'] == null ? undefined : json['privacy_policy'],
-        'photoConsent': json['photo_consent'] == null ? undefined : json['photo_consent'],
+        'photoConsent': json['photo_consent'] == null ? undefined : ProviderPhotoConsentFromJSON(json['photo_consent']),
         'connectedAt': json['connected_at'] == null ? undefined : (new Date(json['connected_at'])),
         'terms': json['terms'] == null ? undefined : ((json['terms'] as Array<any>).map(TermFromJSON)),
         'venues': json['venues'] == null ? undefined : ((json['venues'] as Array<any>).map(VenueFromJSON)),
@@ -361,7 +368,7 @@ export function ProviderToJSONTyped(value?: Provider | null, ignoreDiscriminator
         'facilities': value['facilities'] == null ? undefined : ((value['facilities'] as Array<any>).map(FacilityToJSON)),
         'terms_and_conditions': value['termsAndConditions'],
         'privacy_policy': value['privacyPolicy'],
-        'photo_consent': value['photoConsent'],
+        'photo_consent': ProviderPhotoConsentToJSON(value['photoConsent']),
         'connected_at': value['connectedAt'] == null ? undefined : ((value['connectedAt']).toISOString()),
         'terms': value['terms'] == null ? undefined : ((value['terms'] as Array<any>).map(TermToJSON)),
         'venues': value['venues'] == null ? undefined : ((value['venues'] as Array<any>).map(VenueToJSON)),

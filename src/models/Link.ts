@@ -48,13 +48,25 @@ export interface Link {
      * @type {string}
      * @memberof Link
      */
-    stripeId?: string;
+    stripeId: string;
     /**
      * 
      * @type {number}
      * @memberof Link
      */
     balance: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Link
+     */
+    visibleBalance?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Link
+     */
+    processingAmount?: number;
     /**
      * 
      * @type {string}
@@ -101,6 +113,7 @@ export function instanceOfLink(value: object): value is Link {
     if (!('providerName' in value) || value['providerName'] === undefined) return false;
     if (!('userId' in value) || value['userId'] === undefined) return false;
     if (!('userName' in value) || value['userName'] === undefined) return false;
+    if (!('stripeId' in value) || value['stripeId'] === undefined) return false;
     if (!('balance' in value) || value['balance'] === undefined) return false;
     return true;
 }
@@ -119,8 +132,10 @@ export function LinkFromJSONTyped(json: any, ignoreDiscriminator: boolean): Link
         'providerName': json['provider_name'],
         'userId': json['user_id'],
         'userName': json['user_name'],
-        'stripeId': json['stripe_id'] == null ? undefined : json['stripe_id'],
+        'stripeId': json['stripe_id'],
         'balance': json['balance'],
+        'visibleBalance': json['visible_balance'] == null ? undefined : json['visible_balance'],
+        'processingAmount': json['processing_amount'] == null ? undefined : json['processing_amount'],
         'cardLastFour': json['card_last_four'] == null ? undefined : json['card_last_four'],
         'bacsLastFour': json['bacs_last_four'] == null ? undefined : json['bacs_last_four'],
         'marketingConsent': json['marketing_consent'] == null ? undefined : json['marketing_consent'],
@@ -147,6 +162,8 @@ export function LinkToJSONTyped(value?: Link | null, ignoreDiscriminator: boolea
         'user_name': value['userName'],
         'stripe_id': value['stripeId'],
         'balance': value['balance'],
+        'visible_balance': value['visibleBalance'],
+        'processing_amount': value['processingAmount'],
         'card_last_four': value['cardLastFour'],
         'bacs_last_four': value['bacsLastFour'],
         'marketing_consent': value['marketingConsent'],

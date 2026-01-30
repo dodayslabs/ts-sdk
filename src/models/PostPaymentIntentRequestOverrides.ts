@@ -30,7 +30,7 @@ export interface PostPaymentIntentRequestOverrides {
      * @type {string}
      * @memberof PostPaymentIntentRequestOverrides
      */
-    setupFutureUsage?: string;
+    setupFutureUsage?: string | null;
     /**
      * 
      * @type {string}
