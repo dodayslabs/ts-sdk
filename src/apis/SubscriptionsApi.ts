@@ -16,13 +16,13 @@
 import * as runtime from '../runtime';
 import type {
   GetSubscriptions200Response,
-  PostPayBookingRequest,
+  PostPaySubscriptionRequest,
 } from '../models/index';
 import {
     GetSubscriptions200ResponseFromJSON,
     GetSubscriptions200ResponseToJSON,
-    PostPayBookingRequestFromJSON,
-    PostPayBookingRequestToJSON,
+    PostPaySubscriptionRequestFromJSON,
+    PostPaySubscriptionRequestToJSON,
 } from '../models/index';
 
 export interface GetSubscriptionsRequest {
@@ -34,9 +34,9 @@ export interface PostActivateSubscriptionRequest {
     subscriptionId: string;
 }
 
-export interface PostPaySubscriptionRequest {
+export interface PostPaySubscriptionOperationRequest {
     subscriptionId: string;
-    postPayBookingRequest?: PostPayBookingRequest;
+    postPaySubscriptionRequest?: PostPaySubscriptionRequest;
 }
 
 /**
@@ -141,7 +141,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
      * Pay a subscription.
      * Pay subscription
      */
-    async postPaySubscriptionRaw(requestParameters: PostPaySubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async postPaySubscriptionRaw(requestParameters: PostPaySubscriptionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['subscriptionId'] == null) {
             throw new runtime.RequiredError(
                 'subscriptionId',
@@ -172,7 +172,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PostPayBookingRequestToJSON(requestParameters['postPayBookingRequest']),
+            body: PostPaySubscriptionRequestToJSON(requestParameters['postPaySubscriptionRequest']),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -182,7 +182,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
      * Pay a subscription.
      * Pay subscription
      */
-    async postPaySubscription(requestParameters: PostPaySubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+    async postPaySubscription(requestParameters: PostPaySubscriptionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.postPaySubscriptionRaw(requestParameters, initOverrides);
     }
 

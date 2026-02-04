@@ -64,6 +64,7 @@ export * from './PostBookingRequestReferral';
 export * from './PostConnectAcceptRequest';
 export * from './PostForgotPasswordRequest';
 export * from './PostPayBookingRequest';
+export * from './PostPaySubscriptionRequest';
 export * from './PostPaymentIntent200Response';
 export * from './PostPaymentIntentRequest';
 export * from './PostPaymentIntentRequestOverrides';

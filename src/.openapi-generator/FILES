@@ -92,6 +92,7 @@ models/PostBookingRequestReferral.ts
 models/PostConnectAcceptRequest.ts
 models/PostForgotPasswordRequest.ts
 models/PostPayBookingRequest.ts
+models/PostPaySubscriptionRequest.ts
 models/PostPaymentIntent200Response.ts
 models/PostPaymentIntentRequest.ts
 models/PostPaymentIntentRequestOverrides.ts
