@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Class } from './Class';
+import {
+    ClassFromJSON,
+    ClassFromJSONTyped,
+    ClassToJSON,
+    ClassToJSONTyped,
+} from './Class';
+
 /**
  * 
  * @export
@@ -61,6 +69,12 @@ export interface Session {
      * @memberof Session
      */
     spacesCount: number;
+    /**
+     * 
+     * @type {Class}
+     * @memberof Session
+     */
+    _class?: Class;
 }
 
 /**
@@ -91,6 +105,7 @@ export function SessionFromJSONTyped(json: any, ignoreDiscriminator: boolean): S
         'venueName': json['venue_name'] == null ? undefined : json['venue_name'],
         'cancelled': json['cancelled'],
         'spacesCount': json['spaces_count'],
+        '_class': json['class'] == null ? undefined : ClassFromJSON(json['class']),
     };
 }
 
@@ -112,6 +127,7 @@ export function SessionToJSONTyped(value?: Session | null, ignoreDiscriminator: 
         'venue_name': value['venueName'],
         'cancelled': value['cancelled'],
         'spaces_count': value['spacesCount'],
+        'class': ClassToJSON(value['_class']),
     };
 }
 
