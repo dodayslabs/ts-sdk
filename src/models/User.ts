@@ -24,25 +24,25 @@ export interface User {
      * @type {number}
      * @memberof User
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    firstName?: string;
+    firstName: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    lastName?: string;
+    lastName: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
-    email?: string;
+    email: string;
     /**
      * 
      * @type {string}
@@ -103,6 +103,10 @@ export interface User {
  * Check if a given object implements the User interface.
  */
 export function instanceOfUser(value: object): value is User {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('firstName' in value) || value['firstName'] === undefined) return false;
+    if (!('lastName' in value) || value['lastName'] === undefined) return false;
+    if (!('email' in value) || value['email'] === undefined) return false;
     return true;
 }
 
@@ -116,10 +120,10 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'firstName': json['first_name'] == null ? undefined : json['first_name'],
-        'lastName': json['last_name'] == null ? undefined : json['last_name'],
-        'email': json['email'] == null ? undefined : json['email'],
+        'id': json['id'],
+        'firstName': json['first_name'],
+        'lastName': json['last_name'],
+        'email': json['email'],
         'telephone': json['telephone'] == null ? undefined : json['telephone'],
         'street': json['street'] == null ? undefined : json['street'],
         'town': json['town'] == null ? undefined : json['town'],

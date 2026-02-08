@@ -32,43 +32,43 @@ export interface BookingSession {
      * @type {number}
      * @memberof BookingSession
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {Date}
      * @memberof BookingSession
      */
-    dateTime?: Date;
+    dateTime: Date;
     /**
      * 
      * @type {boolean}
      * @memberof BookingSession
      */
-    attended?: boolean;
+    attended: boolean;
     /**
      * 
      * @type {boolean}
      * @memberof BookingSession
      */
-    absent?: boolean;
+    absent: boolean;
     /**
      * 
      * @type {boolean}
      * @memberof BookingSession
      */
-    banked?: boolean;
+    banked: boolean;
     /**
      * 
      * @type {boolean}
      * @memberof BookingSession
      */
-    cancelled?: boolean;
+    cancelled: boolean;
     /**
      * 
      * @type {Session}
      * @memberof BookingSession
      */
-    session?: Session;
+    session: Session;
     /**
      * 
      * @type {BookingSession}
@@ -81,6 +81,13 @@ export interface BookingSession {
  * Check if a given object implements the BookingSession interface.
  */
 export function instanceOfBookingSession(value: object): value is BookingSession {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('dateTime' in value) || value['dateTime'] === undefined) return false;
+    if (!('attended' in value) || value['attended'] === undefined) return false;
+    if (!('absent' in value) || value['absent'] === undefined) return false;
+    if (!('banked' in value) || value['banked'] === undefined) return false;
+    if (!('cancelled' in value) || value['cancelled'] === undefined) return false;
+    if (!('session' in value) || value['session'] === undefined) return false;
     return true;
 }
 
@@ -94,13 +101,13 @@ export function BookingSessionFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'dateTime': json['date_time'] == null ? undefined : (new Date(json['date_time'])),
-        'attended': json['attended'] == null ? undefined : json['attended'],
-        'absent': json['absent'] == null ? undefined : json['absent'],
-        'banked': json['banked'] == null ? undefined : json['banked'],
-        'cancelled': json['cancelled'] == null ? undefined : json['cancelled'],
-        'session': json['session'] == null ? undefined : SessionFromJSON(json['session']),
+        'id': json['id'],
+        'dateTime': (new Date(json['date_time'])),
+        'attended': json['attended'],
+        'absent': json['absent'],
+        'banked': json['banked'],
+        'cancelled': json['cancelled'],
+        'session': SessionFromJSON(json['session']),
         'catchUpSession': json['catchUpSession'] == null ? undefined : BookingSessionFromJSON(json['catchUpSession']),
     };
 }
@@ -117,7 +124,7 @@ export function BookingSessionToJSONTyped(value?: BookingSession | null, ignoreD
     return {
         
         'id': value['id'],
-        'date_time': value['dateTime'] == null ? undefined : ((value['dateTime']).toISOString()),
+        'date_time': ((value['dateTime']).toISOString()),
         'attended': value['attended'],
         'absent': value['absent'],
         'banked': value['banked'],

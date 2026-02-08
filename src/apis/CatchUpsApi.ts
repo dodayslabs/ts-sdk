@@ -30,6 +30,7 @@ import {
 
 export interface GetAvailableCatchUpSessionsRequest {
     filterBankedSession?: number;
+    include?: string;
 }
 
 export interface PostBookCatchUpOperationRequest {
@@ -50,6 +51,10 @@ export class CatchUpsApi extends runtime.BaseAPI {
 
         if (requestParameters['filterBankedSession'] != null) {
             queryParameters['filter[banked_session]'] = requestParameters['filterBankedSession'];
+        }
+
+        if (requestParameters['include'] != null) {
+            queryParameters['include'] = requestParameters['include'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

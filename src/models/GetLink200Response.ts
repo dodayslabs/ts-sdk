@@ -29,10 +29,10 @@ import {
 export interface GetLink200Response {
     /**
      * 
-     * @type {Array<Link>}
+     * @type {Link}
      * @memberof GetLink200Response
      */
-    data?: Array<Link>;
+    data?: Link;
 }
 
 /**
@@ -52,7 +52,7 @@ export function GetLink200ResponseFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(LinkFromJSON)),
+        'data': json['data'] == null ? undefined : LinkFromJSON(json['data']),
     };
 }
 
@@ -67,7 +67,7 @@ export function GetLink200ResponseToJSONTyped(value?: GetLink200Response | null,
 
     return {
         
-        'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(LinkToJSON)),
+        'data': LinkToJSON(value['data']),
     };
 }
 

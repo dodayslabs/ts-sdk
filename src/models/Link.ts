@@ -24,37 +24,49 @@ export interface Link {
      * @type {number}
      * @memberof Link
      */
-    providerId?: number;
+    providerId: number;
     /**
      * 
      * @type {string}
      * @memberof Link
      */
-    providerName?: string;
+    providerName: string;
     /**
      * 
      * @type {string}
      * @memberof Link
      */
-    userId?: string;
+    userId: string;
     /**
      * 
      * @type {string}
      * @memberof Link
      */
-    userName?: string;
+    userName: string;
     /**
      * 
      * @type {string}
      * @memberof Link
      */
-    stripeId?: string;
+    stripeId: string;
     /**
      * 
      * @type {number}
      * @memberof Link
      */
-    balance?: number;
+    balance: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Link
+     */
+    visibleBalance?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Link
+     */
+    processingAmount?: number;
     /**
      * 
      * @type {string}
@@ -97,6 +109,12 @@ export interface Link {
  * Check if a given object implements the Link interface.
  */
 export function instanceOfLink(value: object): value is Link {
+    if (!('providerId' in value) || value['providerId'] === undefined) return false;
+    if (!('providerName' in value) || value['providerName'] === undefined) return false;
+    if (!('userId' in value) || value['userId'] === undefined) return false;
+    if (!('userName' in value) || value['userName'] === undefined) return false;
+    if (!('stripeId' in value) || value['stripeId'] === undefined) return false;
+    if (!('balance' in value) || value['balance'] === undefined) return false;
     return true;
 }
 
@@ -110,12 +128,14 @@ export function LinkFromJSONTyped(json: any, ignoreDiscriminator: boolean): Link
     }
     return {
         
-        'providerId': json['provider_id'] == null ? undefined : json['provider_id'],
-        'providerName': json['provider_name'] == null ? undefined : json['provider_name'],
-        'userId': json['user_id'] == null ? undefined : json['user_id'],
-        'userName': json['user_name'] == null ? undefined : json['user_name'],
-        'stripeId': json['stripe_id'] == null ? undefined : json['stripe_id'],
-        'balance': json['balance'] == null ? undefined : json['balance'],
+        'providerId': json['provider_id'],
+        'providerName': json['provider_name'],
+        'userId': json['user_id'],
+        'userName': json['user_name'],
+        'stripeId': json['stripe_id'],
+        'balance': json['balance'],
+        'visibleBalance': json['visible_balance'] == null ? undefined : json['visible_balance'],
+        'processingAmount': json['processing_amount'] == null ? undefined : json['processing_amount'],
         'cardLastFour': json['card_last_four'] == null ? undefined : json['card_last_four'],
         'bacsLastFour': json['bacs_last_four'] == null ? undefined : json['bacs_last_four'],
         'marketingConsent': json['marketing_consent'] == null ? undefined : json['marketing_consent'],
@@ -142,6 +162,8 @@ export function LinkToJSONTyped(value?: Link | null, ignoreDiscriminator: boolea
         'user_name': value['userName'],
         'stripe_id': value['stripeId'],
         'balance': value['balance'],
+        'visible_balance': value['visibleBalance'],
+        'processing_amount': value['processingAmount'],
         'card_last_four': value['cardLastFour'],
         'bacs_last_four': value['bacsLastFour'],
         'marketing_consent': value['marketingConsent'],

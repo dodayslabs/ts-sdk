@@ -25,6 +25,12 @@ export interface PostPayBookingRequest {
      * @memberof PostPayBookingRequest
      */
     paymentIntent?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PostPayBookingRequest
+     */
+    creditAmount?: number;
 }
 
 /**
@@ -45,6 +51,7 @@ export function PostPayBookingRequestFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'paymentIntent': json['payment_intent'] == null ? undefined : json['payment_intent'],
+        'creditAmount': json['credit_amount'] == null ? undefined : json['credit_amount'],
     };
 }
 
@@ -60,6 +67,7 @@ export function PostPayBookingRequestToJSONTyped(value?: PostPayBookingRequest |
     return {
         
         'payment_intent': value['paymentIntent'],
+        'credit_amount': value['creditAmount'],
     };
 }
 

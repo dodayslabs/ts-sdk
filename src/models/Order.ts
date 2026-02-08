@@ -24,19 +24,21 @@ export interface Order {
      * @type {number}
      * @memberof Order
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Order
      */
-    productName?: string;
+    productName: string;
 }
 
 /**
  * Check if a given object implements the Order interface.
  */
 export function instanceOfOrder(value: object): value is Order {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('productName' in value) || value['productName'] === undefined) return false;
     return true;
 }
 
@@ -50,8 +52,8 @@ export function OrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ord
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'productName': json['product_name'] == null ? undefined : json['product_name'],
+        'id': json['id'],
+        'productName': json['product_name'],
     };
 }
 

@@ -24,25 +24,28 @@ export interface Product {
      * @type {number}
      * @memberof Product
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Product
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {number}
      * @memberof Product
      */
-    cost?: number;
+    cost: number;
 }
 
 /**
  * Check if a given object implements the Product interface.
  */
 export function instanceOfProduct(value: object): value is Product {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('cost' in value) || value['cost'] === undefined) return false;
     return true;
 }
 
@@ -56,9 +59,9 @@ export function ProductFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'name': json['name'] == null ? undefined : json['name'],
-        'cost': json['cost'] == null ? undefined : json['cost'],
+        'id': json['id'],
+        'name': json['name'],
+        'cost': json['cost'],
     };
 }
 

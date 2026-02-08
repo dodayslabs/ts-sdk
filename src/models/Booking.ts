@@ -39,79 +39,79 @@ export interface Booking {
      * @type {number}
      * @memberof Booking
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Booking
      */
-    ref?: string;
+    ref: string;
     /**
      * 
      * @type {number}
      * @memberof Booking
      */
-    studentId?: number;
+    studentId: number;
     /**
      * 
      * @type {string}
      * @memberof Booking
      */
-    studentName?: string;
+    studentName: string;
     /**
      * 
      * @type {number}
      * @memberof Booking
      */
-    providerId?: number;
+    providerId: number;
     /**
      * 
      * @type {string}
      * @memberof Booking
      */
-    providerName?: string;
+    providerName: string;
     /**
      * 
      * @type {number}
      * @memberof Booking
      */
-    classId?: number;
+    classId: number;
     /**
      * 
      * @type {string}
      * @memberof Booking
      */
-    className?: string;
+    className: string;
     /**
      * 
      * @type {string}
      * @memberof Booking
      */
-    teacherName?: string;
+    teacherName: string;
     /**
      * 
      * @type {string}
      * @memberof Booking
      */
-    venueName?: string;
+    venueName: string;
     /**
      * 
      * @type {number}
      * @memberof Booking
      */
-    net?: number;
+    net: number;
     /**
      * 
      * @type {number}
      * @memberof Booking
      */
-    gross?: number;
+    gross: number;
     /**
      * 
      * @type {number}
      * @memberof Booking
      */
-    balance?: number;
+    balance: number;
     /**
      * 
      * @type {number}
@@ -192,7 +192,9 @@ export interface Booking {
  */
 export const BookingPaymentMethodEnum = {
     Card: 'card',
-    Subscription: 'subscription'
+    Subscription: 'subscription',
+    Bank: 'bank',
+    Bacs: 'bacs'
 } as const;
 export type BookingPaymentMethodEnum = typeof BookingPaymentMethodEnum[keyof typeof BookingPaymentMethodEnum];
 
@@ -201,6 +203,19 @@ export type BookingPaymentMethodEnum = typeof BookingPaymentMethodEnum[keyof typ
  * Check if a given object implements the Booking interface.
  */
 export function instanceOfBooking(value: object): value is Booking {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('ref' in value) || value['ref'] === undefined) return false;
+    if (!('studentId' in value) || value['studentId'] === undefined) return false;
+    if (!('studentName' in value) || value['studentName'] === undefined) return false;
+    if (!('providerId' in value) || value['providerId'] === undefined) return false;
+    if (!('providerName' in value) || value['providerName'] === undefined) return false;
+    if (!('classId' in value) || value['classId'] === undefined) return false;
+    if (!('className' in value) || value['className'] === undefined) return false;
+    if (!('teacherName' in value) || value['teacherName'] === undefined) return false;
+    if (!('venueName' in value) || value['venueName'] === undefined) return false;
+    if (!('net' in value) || value['net'] === undefined) return false;
+    if (!('gross' in value) || value['gross'] === undefined) return false;
+    if (!('balance' in value) || value['balance'] === undefined) return false;
     return true;
 }
 
@@ -214,19 +229,19 @@ export function BookingFromJSONTyped(json: any, ignoreDiscriminator: boolean): B
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'ref': json['ref'] == null ? undefined : json['ref'],
-        'studentId': json['student_id'] == null ? undefined : json['student_id'],
-        'studentName': json['student_name'] == null ? undefined : json['student_name'],
-        'providerId': json['provider_id'] == null ? undefined : json['provider_id'],
-        'providerName': json['provider_name'] == null ? undefined : json['provider_name'],
-        'classId': json['class_id'] == null ? undefined : json['class_id'],
-        'className': json['class_name'] == null ? undefined : json['class_name'],
-        'teacherName': json['teacher_name'] == null ? undefined : json['teacher_name'],
-        'venueName': json['venue_name'] == null ? undefined : json['venue_name'],
-        'net': json['net'] == null ? undefined : json['net'],
-        'gross': json['gross'] == null ? undefined : json['gross'],
-        'balance': json['balance'] == null ? undefined : json['balance'],
+        'id': json['id'],
+        'ref': json['ref'],
+        'studentId': json['student_id'],
+        'studentName': json['student_name'],
+        'providerId': json['provider_id'],
+        'providerName': json['provider_name'],
+        'classId': json['class_id'],
+        'className': json['class_name'],
+        'teacherName': json['teacher_name'],
+        'venueName': json['venue_name'],
+        'net': json['net'],
+        'gross': json['gross'],
+        'balance': json['balance'],
         'credit': json['credit'] == null ? undefined : json['credit'],
         'catchUp': json['catch_up'] == null ? undefined : json['catch_up'],
         'paymentMethod': json['payment_method'] == null ? undefined : json['payment_method'],

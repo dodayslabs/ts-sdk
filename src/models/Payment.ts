@@ -53,31 +53,31 @@ export interface Payment {
      * @type {number}
      * @memberof Payment
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {Date}
      * @memberof Payment
      */
-    paymentDate?: Date;
+    paymentDate: Date;
     /**
      * 
      * @type {number}
      * @memberof Payment
      */
-    amount?: number;
+    amount: number;
     /**
      * 
      * @type {string}
      * @memberof Payment
      */
-    status?: PaymentStatusEnum;
+    status: PaymentStatusEnum;
     /**
      * 
      * @type {string}
      * @memberof Payment
      */
-    providerName?: string;
+    providerName: string;
     /**
      * 
      * @type {Booking}
@@ -120,6 +120,11 @@ export type PaymentStatusEnum = typeof PaymentStatusEnum[keyof typeof PaymentSta
  * Check if a given object implements the Payment interface.
  */
 export function instanceOfPayment(value: object): value is Payment {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('paymentDate' in value) || value['paymentDate'] === undefined) return false;
+    if (!('amount' in value) || value['amount'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('providerName' in value) || value['providerName'] === undefined) return false;
     return true;
 }
 
@@ -133,11 +138,11 @@ export function PaymentFromJSONTyped(json: any, ignoreDiscriminator: boolean): P
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'paymentDate': json['payment_date'] == null ? undefined : (new Date(json['payment_date'])),
-        'amount': json['amount'] == null ? undefined : json['amount'],
-        'status': json['status'] == null ? undefined : json['status'],
-        'providerName': json['provider_name'] == null ? undefined : json['provider_name'],
+        'id': json['id'],
+        'paymentDate': (new Date(json['payment_date'])),
+        'amount': json['amount'],
+        'status': json['status'],
+        'providerName': json['provider_name'],
         'booking': json['booking'] == null ? undefined : BookingFromJSON(json['booking']),
         'order': json['order'] == null ? undefined : OrderFromJSON(json['order']),
         'student': json['student'] == null ? undefined : StudentFromJSON(json['student']),
@@ -157,7 +162,7 @@ export function PaymentToJSONTyped(value?: Payment | null, ignoreDiscriminator: 
     return {
         
         'id': value['id'],
-        'payment_date': value['paymentDate'] == null ? undefined : ((value['paymentDate']).toISOString()),
+        'payment_date': ((value['paymentDate']).toISOString()),
         'amount': value['amount'],
         'status': value['status'],
         'provider_name': value['providerName'],

@@ -24,6 +24,7 @@ import {
 
 export interface GetLinkRequest {
     filterProvider?: number;
+    fieldsLinks?: Array<GetLinkFieldsLinksEnum>;
 }
 
 /**
@@ -40,6 +41,10 @@ export class LinksApi extends runtime.BaseAPI {
 
         if (requestParameters['filterProvider'] != null) {
             queryParameters['filter[provider]'] = requestParameters['filterProvider'];
+        }
+
+        if (requestParameters['fieldsLinks'] != null) {
+            queryParameters['fields[links][]'] = requestParameters['fieldsLinks'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -67,3 +72,12 @@ export class LinksApi extends runtime.BaseAPI {
     }
 
 }
+
+/**
+ * @export
+ */
+export const GetLinkFieldsLinksEnum = {
+    VisibleBalance: 'visible_balance',
+    ProcessingAmount: 'processing_amount'
+} as const;
+export type GetLinkFieldsLinksEnum = typeof GetLinkFieldsLinksEnum[keyof typeof GetLinkFieldsLinksEnum];

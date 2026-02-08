@@ -24,19 +24,21 @@ export interface Stage {
      * @type {number}
      * @memberof Stage
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
      * @memberof Stage
      */
-    name?: string;
+    name: string;
 }
 
 /**
  * Check if a given object implements the Stage interface.
  */
 export function instanceOfStage(value: object): value is Stage {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
     return true;
 }
 
@@ -50,8 +52,8 @@ export function StageFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sta
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'name': json['name'] == null ? undefined : json['name'],
+        'id': json['id'],
+        'name': json['name'],
     };
 }
 

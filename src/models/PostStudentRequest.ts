@@ -24,7 +24,7 @@ export interface PostStudentRequest {
      * @type {number}
      * @memberof PostStudentRequest
      */
-    providerId: number;
+    providerId?: number;
     /**
      * 
      * @type {string}
@@ -73,7 +73,6 @@ export interface PostStudentRequest {
  * Check if a given object implements the PostStudentRequest interface.
  */
 export function instanceOfPostStudentRequest(value: object): value is PostStudentRequest {
-    if (!('providerId' in value) || value['providerId'] === undefined) return false;
     if (!('firstName' in value) || value['firstName'] === undefined) return false;
     if (!('lastName' in value) || value['lastName'] === undefined) return false;
     return true;
@@ -89,7 +88,7 @@ export function PostStudentRequestFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'providerId': json['provider_id'],
+        'providerId': json['provider_id'] == null ? undefined : json['provider_id'],
         'firstName': json['first_name'],
         'lastName': json['last_name'],
         'dob': json['dob'] == null ? undefined : (new Date(json['dob'])),

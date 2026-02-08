@@ -1,6 +1,6 @@
 {
   "name": "@dodayslabs/ts-sdk",
-  "version": "0.3.0",
+  "version": "0.4.0-feat-required.7",
   "license": "See LICENSE",
   "author": "Sam Bindoff",
   "description": "Official DoDays TypeScript SDK",
@@ -11,8 +11,8 @@
     "typescript"
   ],
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.24.0",
-    "typescript": "^5.9.2"
+    "@openapitools/openapi-generator-cli": "^2.28.2",
+    "typescript": "^5.9.3"
   },
   "scripts": {
     "generate": "openapi-generator-cli generate -i ../docs/openapi.yaml -g typescript-fetch -o src",
@@ -31,5 +31,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "packageManager": "pnpm@10.17.1+sha512.17c560fca4867ae9473a3899ad84a88334914f379be46d455cbf92e5cf4b39d34985d452d2583baf19967fa76cb5c17bc9e245529d0b98745721aa7200ecaf7a"
+  "packageManager": "pnpm@10.28.2+sha512.41872f037ad22f7348e3b1debbaf7e867cfd448f2726d9cf74c08f19507c31d2c8e7a11525b983febc2df640b5438dee6023ebb1f84ed43cc2d654d2bc326264"
 }

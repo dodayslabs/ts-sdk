@@ -75,6 +75,8 @@ models/PatchPasswordRequest.ts
 models/PatchPaymentIntentRequest.ts
 models/PatchStudentRequest.ts
 models/Payment.ts
+models/PhotoConsentContent.ts
+models/PhotoConsentLink.ts
 models/Plan.ts
 models/PostActivateRequest.ts
 models/PostApplyCoupon200Response.ts
@@ -90,6 +92,7 @@ models/PostBookingRequestReferral.ts
 models/PostConnectAcceptRequest.ts
 models/PostForgotPasswordRequest.ts
 models/PostPayBookingRequest.ts
+models/PostPaySubscriptionRequest.ts
 models/PostPaymentIntent200Response.ts
 models/PostPaymentIntentRequest.ts
 models/PostPaymentIntentRequestOverrides.ts
@@ -120,6 +123,7 @@ models/Provider.ts
 models/ProviderBookingSettings.ts
 models/ProviderCatchUpSettings.ts
 models/ProviderNotificationSettings.ts
+models/ProviderPhotoConsent.ts
 models/ProviderWaitingListSettings.ts
 models/ProviderWithType.ts
 models/Session.ts

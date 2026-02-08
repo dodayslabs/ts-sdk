@@ -39,7 +39,7 @@ export interface Waitee {
      * @type {number}
      * @memberof Waitee
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {string}
@@ -76,6 +76,7 @@ export interface Waitee {
  * Check if a given object implements the Waitee interface.
  */
 export function instanceOfWaitee(value: object): value is Waitee {
+    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -89,7 +90,7 @@ export function WaiteeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Wa
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
+        'id': json['id'],
         'inviteCode': json['invite_code'] == null ? undefined : json['invite_code'],
         'invitedAt': json['invited_at'] == null ? undefined : (new Date(json['invited_at'])),
         'expired': json['expired'] == null ? undefined : json['expired'],

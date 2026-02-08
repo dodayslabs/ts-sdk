@@ -36,7 +36,7 @@ export interface PatchStudentRequest {
      * @type {Date}
      * @memberof PatchStudentRequest
      */
-    dob: Date;
+    dob?: Date;
     /**
      * 
      * @type {string}
@@ -57,7 +57,6 @@ export interface PatchStudentRequest {
 export function instanceOfPatchStudentRequest(value: object): value is PatchStudentRequest {
     if (!('firstName' in value) || value['firstName'] === undefined) return false;
     if (!('lastName' in value) || value['lastName'] === undefined) return false;
-    if (!('dob' in value) || value['dob'] === undefined) return false;
     return true;
 }
 
@@ -73,7 +72,7 @@ export function PatchStudentRequestFromJSONTyped(json: any, ignoreDiscriminator:
         
         'firstName': json['first_name'],
         'lastName': json['last_name'],
-        'dob': (new Date(json['dob'])),
+        'dob': json['dob'] == null ? undefined : (new Date(json['dob'])),
         'medical': json['medical'] == null ? undefined : json['medical'],
         'relation': json['relation'] == null ? undefined : json['relation'],
     };
@@ -92,7 +91,7 @@ export function PatchStudentRequestToJSONTyped(value?: PatchStudentRequest | nul
         
         'first_name': value['firstName'],
         'last_name': value['lastName'],
-        'dob': ((value['dob']).toISOString().substring(0,10)),
+        'dob': value['dob'] == null ? undefined : ((value['dob']).toISOString().substring(0,10)),
         'medical': value['medical'],
         'relation': value['relation'],
     };

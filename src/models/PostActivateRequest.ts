@@ -21,16 +21,16 @@ import { mapValues } from '../runtime';
 export interface PostActivateRequest {
     /**
      * 
-     * @type {Array<boolean>}
+     * @type {{ [key: string]: boolean; }}
      * @memberof PostActivateRequest
      */
-    terms?: Array<boolean>;
+    terms?: { [key: string]: boolean; };
     /**
      * 
-     * @type {Array<boolean>}
+     * @type {{ [key: string]: boolean; }}
      * @memberof PostActivateRequest
      */
-    marketing?: Array<boolean>;
+    marketing?: { [key: string]: boolean; };
 }
 
 /**

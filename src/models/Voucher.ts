@@ -24,25 +24,28 @@ export interface Voucher {
      * @type {number}
      * @memberof Voucher
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {number}
      * @memberof Voucher
      */
-    value?: number;
+    value: number;
     /**
      * 
      * @type {number}
      * @memberof Voucher
      */
-    remainingValue?: number;
+    remainingValue: number;
 }
 
 /**
  * Check if a given object implements the Voucher interface.
  */
 export function instanceOfVoucher(value: object): value is Voucher {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('value' in value) || value['value'] === undefined) return false;
+    if (!('remainingValue' in value) || value['remainingValue'] === undefined) return false;
     return true;
 }
 
@@ -56,9 +59,9 @@ export function VoucherFromJSONTyped(json: any, ignoreDiscriminator: boolean): V
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'value': json['value'] == null ? undefined : json['value'],
-        'remainingValue': json['remaining_value'] == null ? undefined : json['remaining_value'],
+        'id': json['id'],
+        'value': json['value'],
+        'remainingValue': json['remaining_value'],
     };
 }
 

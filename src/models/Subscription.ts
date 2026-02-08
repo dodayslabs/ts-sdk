@@ -24,73 +24,84 @@ export interface Subscription {
      * @type {number}
      * @memberof Subscription
      */
-    id?: number;
+    id: number;
     /**
      * 
      * @type {number}
      * @memberof Subscription
      */
-    providerId?: number;
+    providerId: number;
     /**
      * 
      * @type {string}
      * @memberof Subscription
      */
-    planName?: string;
+    planName: string;
     /**
      * 
      * @type {string}
      * @memberof Subscription
      */
-    studentName?: string;
+    studentName: string;
     /**
      * 
      * @type {string}
      * @memberof Subscription
      */
-    paymentMethod?: string;
+    paymentMethod: string;
     /**
      * 
      * @type {number}
      * @memberof Subscription
      */
-    goal?: number;
+    goal: number;
     /**
      * 
      * @type {number}
      * @memberof Subscription
      */
-    amount?: number;
+    amount: number;
     /**
      * 
      * @type {boolean}
      * @memberof Subscription
      */
-    stripeActive?: boolean;
+    stripeActive: boolean;
     /**
      * 
      * @type {Date}
      * @memberof Subscription
      */
-    startsAt?: Date;
+    startsAt: Date;
     /**
      * 
      * @type {Date}
      * @memberof Subscription
      */
-    trialEndsAt?: Date;
+    trialEndsAt: Date;
     /**
      * 
      * @type {number}
      * @memberof Subscription
      */
-    outstandingPaymentsCount?: number;
+    outstandingPaymentsCount: number;
 }
 
 /**
  * Check if a given object implements the Subscription interface.
  */
 export function instanceOfSubscription(value: object): value is Subscription {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('providerId' in value) || value['providerId'] === undefined) return false;
+    if (!('planName' in value) || value['planName'] === undefined) return false;
+    if (!('studentName' in value) || value['studentName'] === undefined) return false;
+    if (!('paymentMethod' in value) || value['paymentMethod'] === undefined) return false;
+    if (!('goal' in value) || value['goal'] === undefined) return false;
+    if (!('amount' in value) || value['amount'] === undefined) return false;
+    if (!('stripeActive' in value) || value['stripeActive'] === undefined) return false;
+    if (!('startsAt' in value) || value['startsAt'] === undefined) return false;
+    if (!('trialEndsAt' in value) || value['trialEndsAt'] === undefined) return false;
+    if (!('outstandingPaymentsCount' in value) || value['outstandingPaymentsCount'] === undefined) return false;
     return true;
 }
 
@@ -104,17 +115,17 @@ export function SubscriptionFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'providerId': json['provider_id'] == null ? undefined : json['provider_id'],
-        'planName': json['plan_name'] == null ? undefined : json['plan_name'],
-        'studentName': json['student_name'] == null ? undefined : json['student_name'],
-        'paymentMethod': json['payment_method'] == null ? undefined : json['payment_method'],
-        'goal': json['goal'] == null ? undefined : json['goal'],
-        'amount': json['amount'] == null ? undefined : json['amount'],
-        'stripeActive': json['stripe_active'] == null ? undefined : json['stripe_active'],
-        'startsAt': json['starts_at'] == null ? undefined : (new Date(json['starts_at'])),
-        'trialEndsAt': json['trial_ends_at'] == null ? undefined : (new Date(json['trial_ends_at'])),
-        'outstandingPaymentsCount': json['outstanding_payments_count'] == null ? undefined : json['outstanding_payments_count'],
+        'id': json['id'],
+        'providerId': json['provider_id'],
+        'planName': json['plan_name'],
+        'studentName': json['student_name'],
+        'paymentMethod': json['payment_method'],
+        'goal': json['goal'],
+        'amount': json['amount'],
+        'stripeActive': json['stripe_active'],
+        'startsAt': (new Date(json['starts_at'])),
+        'trialEndsAt': (new Date(json['trial_ends_at'])),
+        'outstandingPaymentsCount': json['outstanding_payments_count'],
     };
 }
 
@@ -137,8 +148,8 @@ export function SubscriptionToJSONTyped(value?: Subscription | null, ignoreDiscr
         'goal': value['goal'],
         'amount': value['amount'],
         'stripe_active': value['stripeActive'],
-        'starts_at': value['startsAt'] == null ? undefined : ((value['startsAt']).toISOString()),
-        'trial_ends_at': value['trialEndsAt'] == null ? undefined : ((value['trialEndsAt']).toISOString()),
+        'starts_at': ((value['startsAt']).toISOString()),
+        'trial_ends_at': ((value['trialEndsAt']).toISOString()),
         'outstanding_payments_count': value['outstandingPaymentsCount'],
     };
 }
