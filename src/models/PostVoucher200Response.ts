@@ -29,10 +29,10 @@ import {
 export interface PostVoucher200Response {
     /**
      * 
-     * @type {Array<Voucher>}
+     * @type {Voucher}
      * @memberof PostVoucher200Response
      */
-    data?: Array<Voucher>;
+    data?: Voucher;
 }
 
 /**
@@ -52,7 +52,7 @@ export function PostVoucher200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(VoucherFromJSON)),
+        'data': json['data'] == null ? undefined : VoucherFromJSON(json['data']),
     };
 }
 
@@ -67,7 +67,7 @@ export function PostVoucher200ResponseToJSONTyped(value?: PostVoucher200Response
 
     return {
         
-        'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(VoucherToJSON)),
+        'data': VoucherToJSON(value['data']),
     };
 }
 
