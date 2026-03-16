@@ -24,7 +24,7 @@ export interface PostBookingRequestEmergency {
      * @type {string}
      * @memberof PostBookingRequestEmergency
      */
-    type?: PostBookingRequestEmergencyTypeEnum;
+    name?: string;
     /**
      * 
      * @type {string}
@@ -32,28 +32,6 @@ export interface PostBookingRequestEmergency {
      */
     telephone?: string;
 }
-
-
-/**
- * @export
- */
-export const PostBookingRequestEmergencyTypeEnum = {
-    Friend: 'friend',
-    WordOfMouth: 'wordOfMouth',
-    SearchEngine: 'searchEngine',
-    Facebook: 'facebook',
-    Twitter: 'twitter',
-    Instagram: 'instagram',
-    ClubHub: 'clubHub',
-    WhatsOn4Kids: 'whatsOn4Kids',
-    Netmums: 'netmums',
-    Leaflet: 'leaflet',
-    TvRadio: 'tvRadio',
-    Event: 'event',
-    Other: 'other'
-} as const;
-export type PostBookingRequestEmergencyTypeEnum = typeof PostBookingRequestEmergencyTypeEnum[keyof typeof PostBookingRequestEmergencyTypeEnum];
-
 
 /**
  * Check if a given object implements the PostBookingRequestEmergency interface.
@@ -72,7 +50,7 @@ export function PostBookingRequestEmergencyFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'type': json['type'] == null ? undefined : json['type'],
+        'name': json['name'] == null ? undefined : json['name'],
         'telephone': json['telephone'] == null ? undefined : json['telephone'],
     };
 }
@@ -88,7 +66,7 @@ export function PostBookingRequestEmergencyToJSONTyped(value?: PostBookingReques
 
     return {
         
-        'type': value['type'],
+        'name': value['name'],
         'telephone': value['telephone'],
     };
 }
