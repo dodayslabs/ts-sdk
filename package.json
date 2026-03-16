@@ -1,6 +1,6 @@
 {
   "name": "@dodayslabs/ts-sdk",
-  "version": "0.5.0",
+  "version": "0.6.0-beta.0",
   "license": "See LICENSE",
   "author": "Sam Bindoff",
   "description": "Official DoDays TypeScript SDK",
@@ -11,7 +11,7 @@
     "typescript"
   ],
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.29.0",
+    "@openapitools/openapi-generator-cli": "^2.30.2",
     "typescript": "^5.9.3"
   },
   "scripts": {
