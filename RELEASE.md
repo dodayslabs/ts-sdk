@@ -4,8 +4,8 @@
 
 ```
 pnpm build
-npm version 0.x.0-feat-branch.1
-npm publish --tag feat-branch
+npm version 0.x.0-beta.0
+npm publish --tag beta
 ```
 
 ## 1. Squash and merge in GH
