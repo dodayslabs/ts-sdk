@@ -38,6 +38,18 @@ export interface Price {
      * @type {string}
      * @memberof Price
      */
+    name?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Price
+     */
+    description?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Price
+     */
     type: PriceTypeEnum;
     /**
      * 
@@ -125,6 +137,8 @@ export function PriceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Pri
     return {
         
         'id': json['id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
         'type': json['type'],
         'paymentMethod': json['payment_method'],
         'fixedCost': json['fixed_cost'] == null ? undefined : json['fixed_cost'],
@@ -146,6 +160,8 @@ export function PriceToJSONTyped(value?: Price | null, ignoreDiscriminator: bool
     return {
         
         'id': value['id'],
+        'name': value['name'],
+        'description': value['description'],
         'type': value['type'],
         'payment_method': value['paymentMethod'],
         'fixed_cost': value['fixedCost'],
