@@ -68,6 +68,9 @@ models/InlineObject1.ts
 models/InlineObject2.ts
 models/Link.ts
 models/Order.ts
+models/PaginationLinks.ts
+models/PaginationMeta.ts
+models/PaginationMetaLink.ts
 models/PatchDetailsRequest.ts
 models/PatchEmergencyContactRequest.ts
 models/PatchMarketingConsentRequest.ts

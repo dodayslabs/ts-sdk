@@ -13,6 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PaginationLinks } from './PaginationLinks';
+import {
+    PaginationLinksFromJSON,
+    PaginationLinksFromJSONTyped,
+    PaginationLinksToJSON,
+    PaginationLinksToJSONTyped,
+} from './PaginationLinks';
+import type { PaginationMeta } from './PaginationMeta';
+import {
+    PaginationMetaFromJSON,
+    PaginationMetaFromJSONTyped,
+    PaginationMetaToJSON,
+    PaginationMetaToJSONTyped,
+} from './PaginationMeta';
 import type { Class } from './Class';
 import {
     ClassFromJSON,
@@ -33,6 +47,18 @@ export interface GetClasses200Response {
      * @memberof GetClasses200Response
      */
     data?: Array<Class>;
+    /**
+     * 
+     * @type {PaginationLinks}
+     * @memberof GetClasses200Response
+     */
+    links?: PaginationLinks;
+    /**
+     * 
+     * @type {PaginationMeta}
+     * @memberof GetClasses200Response
+     */
+    meta?: PaginationMeta;
 }
 
 /**
@@ -53,6 +79,8 @@ export function GetClasses200ResponseFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(ClassFromJSON)),
+        'links': json['links'] == null ? undefined : PaginationLinksFromJSON(json['links']),
+        'meta': json['meta'] == null ? undefined : PaginationMetaFromJSON(json['meta']),
     };
 }
 
@@ -68,6 +96,8 @@ export function GetClasses200ResponseToJSONTyped(value?: GetClasses200Response |
     return {
         
         'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(ClassToJSON)),
+        'links': PaginationLinksToJSON(value['links']),
+        'meta': PaginationMetaToJSON(value['meta']),
     };
 }
 

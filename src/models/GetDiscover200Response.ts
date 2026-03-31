@@ -13,6 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PaginationLinks } from './PaginationLinks';
+import {
+    PaginationLinksFromJSON,
+    PaginationLinksFromJSONTyped,
+    PaginationLinksToJSON,
+    PaginationLinksToJSONTyped,
+} from './PaginationLinks';
+import type { PaginationMeta } from './PaginationMeta';
+import {
+    PaginationMetaFromJSON,
+    PaginationMetaFromJSONTyped,
+    PaginationMetaToJSON,
+    PaginationMetaToJSONTyped,
+} from './PaginationMeta';
 import type { GetDiscover200ResponseDataInner } from './GetDiscover200ResponseDataInner';
 import {
     GetDiscover200ResponseDataInnerFromJSON,
@@ -33,6 +47,18 @@ export interface GetDiscover200Response {
      * @memberof GetDiscover200Response
      */
     data?: Array<GetDiscover200ResponseDataInner>;
+    /**
+     * 
+     * @type {PaginationLinks}
+     * @memberof GetDiscover200Response
+     */
+    links?: PaginationLinks;
+    /**
+     * 
+     * @type {PaginationMeta}
+     * @memberof GetDiscover200Response
+     */
+    meta?: PaginationMeta;
 }
 
 /**
@@ -53,6 +79,8 @@ export function GetDiscover200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(GetDiscover200ResponseDataInnerFromJSON)),
+        'links': json['links'] == null ? undefined : PaginationLinksFromJSON(json['links']),
+        'meta': json['meta'] == null ? undefined : PaginationMetaFromJSON(json['meta']),
     };
 }
 
@@ -68,6 +96,8 @@ export function GetDiscover200ResponseToJSONTyped(value?: GetDiscover200Response
     return {
         
         'data': value['data'] == null ? undefined : ((value['data'] as Array<any>).map(GetDiscover200ResponseDataInnerToJSON)),
+        'links': PaginationLinksToJSON(value['links']),
+        'meta': PaginationMetaToJSON(value['meta']),
     };
 }
 
