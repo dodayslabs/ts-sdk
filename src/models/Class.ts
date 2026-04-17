@@ -78,6 +78,12 @@ export interface Class {
     trialCost?: number;
     /**
      * 
+     * @type {boolean}
+     * @memberof Class
+     */
+    catchUpsAllowed?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof Class
      */
@@ -215,6 +221,7 @@ export function ClassFromJSONTyped(json: any, ignoreDiscriminator: boolean): Cla
         'sessionCost': json['session_cost'],
         'trialAllowed': json['trial_allowed'] == null ? undefined : json['trial_allowed'],
         'trialCost': json['trial_cost'] == null ? undefined : json['trial_cost'],
+        'catchUpsAllowed': json['catch_ups_allowed'] == null ? undefined : json['catch_ups_allowed'],
         'ageRange': json['age_range'] == null ? undefined : json['age_range'],
         'sell': json['sell'],
         'providerId': json['provider_id'],
@@ -253,6 +260,7 @@ export function ClassToJSONTyped(value?: Class | null, ignoreDiscriminator: bool
         'session_cost': value['sessionCost'],
         'trial_allowed': value['trialAllowed'],
         'trial_cost': value['trialCost'],
+        'catch_ups_allowed': value['catchUpsAllowed'],
         'age_range': value['ageRange'],
         'sell': value['sell'],
         'provider_id': value['providerId'],
