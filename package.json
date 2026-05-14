@@ -1,6 +1,6 @@
 {
   "name": "@dodayslabs/ts-sdk",
-  "version": "0.10.0-beta.0",
+  "version": "0.10.0-beta.1",
   "license": "See LICENSE",
   "author": "Sam Bindoff",
   "description": "Official DoDays TypeScript SDK",

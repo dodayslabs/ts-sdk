@@ -105,8 +105,8 @@ models/PostSetupIntent200Response.ts
 models/PostSetupIntentRequest.ts
 models/PostSetupIntentRequestOverrides.ts
 models/PostStudent201Response.ts
-models/PostStudentGoal200Response.ts
-models/PostStudentGoalRequest.ts
+models/PostStudentGoalStatus200Response.ts
+models/PostStudentGoalStatusRequest.ts
 models/PostStudentRequest.ts
 models/PostStudentStage200Response.ts
 models/PostStudentStage200ResponseStage.ts
