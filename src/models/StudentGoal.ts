@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { StudentGoalStatus } from './StudentGoalStatus';
+import {
+    StudentGoalStatusFromJSON,
+    StudentGoalStatusFromJSONTyped,
+    StudentGoalStatusToJSON,
+    StudentGoalStatusToJSONTyped,
+} from './StudentGoalStatus';
+
 /**
  * 
  * @export
@@ -33,11 +41,19 @@ export interface StudentGoal {
     name: string;
     /**
      * 
+     * @type {StudentGoalStatus}
+     * @memberof StudentGoal
+     */
+    status: StudentGoalStatus;
+    /**
+     * 
      * @type {Date}
      * @memberof StudentGoal
      */
     achievedAt?: Date;
 }
+
+
 
 /**
  * Check if a given object implements the StudentGoal interface.
@@ -45,6 +61,7 @@ export interface StudentGoal {
 export function instanceOfStudentGoal(value: object): value is StudentGoal {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
 
@@ -60,6 +77,7 @@ export function StudentGoalFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'id': json['id'],
         'name': json['name'],
+        'status': StudentGoalStatusFromJSON(json['status']),
         'achievedAt': json['achieved_at'] == null ? undefined : (new Date(json['achieved_at'])),
     };
 }
@@ -77,6 +95,7 @@ export function StudentGoalToJSONTyped(value?: StudentGoal | null, ignoreDiscrim
         
         'id': value['id'],
         'name': value['name'],
+        'status': StudentGoalStatusToJSON(value['status']),
         'achieved_at': value['achievedAt'] == null ? undefined : ((value['achievedAt']).toISOString()),
     };
 }

@@ -122,6 +122,7 @@ models/PostWaiteeRequestDaysInner.ts
 models/PostWaiteeRequestStudentsInner.ts
 models/Price.ts
 models/Product.ts
+models/ProgressMode.ts
 models/Provider.ts
 models/ProviderBookingSettings.ts
 models/ProviderCatchUpSettings.ts
@@ -133,6 +134,7 @@ models/Session.ts
 models/Stage.ts
 models/Student.ts
 models/StudentGoal.ts
+models/StudentGoalStatus.ts
 models/StudentStage.ts
 models/Subscription.ts
 models/Term.ts
