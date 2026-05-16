@@ -20,13 +20,6 @@ import {
     ProviderPhotoConsentToJSON,
     ProviderPhotoConsentToJSONTyped,
 } from './ProviderPhotoConsent';
-import type { Type } from './Type';
-import {
-    TypeFromJSON,
-    TypeFromJSONTyped,
-    TypeToJSON,
-    TypeToJSONTyped,
-} from './Type';
 import type { Category } from './Category';
 import {
     CategoryFromJSON,
@@ -41,13 +34,6 @@ import {
     VenueToJSON,
     VenueToJSONTyped,
 } from './Venue';
-import type { ProviderBookingSettings } from './ProviderBookingSettings';
-import {
-    ProviderBookingSettingsFromJSON,
-    ProviderBookingSettingsFromJSONTyped,
-    ProviderBookingSettingsToJSON,
-    ProviderBookingSettingsToJSONTyped,
-} from './ProviderBookingSettings';
 import type { Product } from './Product';
 import {
     ProductFromJSON,
@@ -55,6 +41,34 @@ import {
     ProductToJSON,
     ProductToJSONTyped,
 } from './Product';
+import type { ProviderNotificationSettings } from './ProviderNotificationSettings';
+import {
+    ProviderNotificationSettingsFromJSON,
+    ProviderNotificationSettingsFromJSONTyped,
+    ProviderNotificationSettingsToJSON,
+    ProviderNotificationSettingsToJSONTyped,
+} from './ProviderNotificationSettings';
+import type { Term } from './Term';
+import {
+    TermFromJSON,
+    TermFromJSONTyped,
+    TermToJSON,
+    TermToJSONTyped,
+} from './Term';
+import type { Type } from './Type';
+import {
+    TypeFromJSON,
+    TypeFromJSONTyped,
+    TypeToJSON,
+    TypeToJSONTyped,
+} from './Type';
+import type { ProviderBookingSettings } from './ProviderBookingSettings';
+import {
+    ProviderBookingSettingsFromJSON,
+    ProviderBookingSettingsFromJSONTyped,
+    ProviderBookingSettingsToJSON,
+    ProviderBookingSettingsToJSONTyped,
+} from './ProviderBookingSettings';
 import type { ProviderCatchUpSettings } from './ProviderCatchUpSettings';
 import {
     ProviderCatchUpSettingsFromJSON,
@@ -76,20 +90,6 @@ import {
     FacilityToJSON,
     FacilityToJSONTyped,
 } from './Facility';
-import type { ProviderNotificationSettings } from './ProviderNotificationSettings';
-import {
-    ProviderNotificationSettingsFromJSON,
-    ProviderNotificationSettingsFromJSONTyped,
-    ProviderNotificationSettingsToJSON,
-    ProviderNotificationSettingsToJSONTyped,
-} from './ProviderNotificationSettings';
-import type { Term } from './Term';
-import {
-    TermFromJSON,
-    TermFromJSONTyped,
-    TermToJSON,
-    TermToJSONTyped,
-} from './Term';
 import type { ProviderWaitingListSettings } from './ProviderWaitingListSettings';
 import {
     ProviderWaitingListSettingsFromJSON,
@@ -97,6 +97,13 @@ import {
     ProviderWaitingListSettingsToJSON,
     ProviderWaitingListSettingsToJSONTyped,
 } from './ProviderWaitingListSettings';
+import type { ProgressMode } from './ProgressMode';
+import {
+    ProgressModeFromJSON,
+    ProgressModeFromJSONTyped,
+    ProgressModeToJSON,
+    ProgressModeToJSONTyped,
+} from './ProgressMode';
 
 /**
  * 
@@ -188,6 +195,12 @@ export interface ProviderWithType {
      * @memberof ProviderWithType
      */
     featured?: boolean;
+    /**
+     * 
+     * @type {ProgressMode}
+     * @memberof ProviderWithType
+     */
+    progressMode: ProgressMode;
     /**
      * 
      * @type {ProviderBookingSettings}
@@ -305,6 +318,7 @@ export function instanceOfProviderWithType(value: object): value is ProviderWith
     if (!('handle' in value) || value['handle'] === undefined) return false;
     if (!('email' in value) || value['email'] === undefined) return false;
     if (!('absorbFee' in value) || value['absorbFee'] === undefined) return false;
+    if (!('progressMode' in value) || value['progressMode'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
@@ -333,6 +347,7 @@ export function ProviderWithTypeFromJSONTyped(json: any, ignoreDiscriminator: bo
         'absorbFee': json['absorb_fee'],
         'verified': json['verified'] == null ? undefined : json['verified'],
         'featured': json['featured'] == null ? undefined : json['featured'],
+        'progressMode': ProgressModeFromJSON(json['progress_mode']),
         'bookingSettings': json['booking_settings'] == null ? undefined : ProviderBookingSettingsFromJSON(json['booking_settings']),
         'catchUpSettings': json['catch_up_settings'] == null ? undefined : ProviderCatchUpSettingsFromJSON(json['catch_up_settings']),
         'waitingListSettings': json['waiting_list_settings'] == null ? undefined : ProviderWaitingListSettingsFromJSON(json['waiting_list_settings']),
@@ -377,6 +392,7 @@ export function ProviderWithTypeToJSONTyped(value?: ProviderWithType | null, ign
         'absorb_fee': value['absorbFee'],
         'verified': value['verified'],
         'featured': value['featured'],
+        'progress_mode': ProgressModeToJSON(value['progressMode']),
         'booking_settings': ProviderBookingSettingsToJSON(value['bookingSettings']),
         'catch_up_settings': ProviderCatchUpSettingsToJSON(value['catchUpSettings']),
         'waiting_list_settings': ProviderWaitingListSettingsToJSON(value['waitingListSettings']),

@@ -19,8 +19,8 @@ import type {
   GetStudents200Response,
   PatchStudentRequest,
   PostStudent201Response,
-  PostStudentGoal200Response,
-  PostStudentGoalRequest,
+  PostStudentGoalStatus200Response,
+  PostStudentGoalStatusRequest,
   PostStudentRequest,
   PostStudentStage200Response,
   PostStudentStageRequest,
@@ -34,10 +34,10 @@ import {
     PatchStudentRequestToJSON,
     PostStudent201ResponseFromJSON,
     PostStudent201ResponseToJSON,
-    PostStudentGoal200ResponseFromJSON,
-    PostStudentGoal200ResponseToJSON,
-    PostStudentGoalRequestFromJSON,
-    PostStudentGoalRequestToJSON,
+    PostStudentGoalStatus200ResponseFromJSON,
+    PostStudentGoalStatus200ResponseToJSON,
+    PostStudentGoalStatusRequestFromJSON,
+    PostStudentGoalStatusRequestToJSON,
     PostStudentRequestFromJSON,
     PostStudentRequestToJSON,
     PostStudentStage200ResponseFromJSON,
@@ -45,11 +45,6 @@ import {
     PostStudentStageRequestFromJSON,
     PostStudentStageRequestToJSON,
 } from '../models/index';
-
-export interface DeleteStudentGoalRequest {
-    studentId: string;
-    goalId: string;
-}
 
 export interface DeleteStudentStageRequest {
     studentId: string;
@@ -77,9 +72,10 @@ export interface PostStudentOperationRequest {
     postStudentRequest?: PostStudentRequest;
 }
 
-export interface PostStudentGoalOperationRequest {
+export interface PostStudentGoalStatusOperationRequest {
     studentId: string;
-    postStudentGoalRequest?: PostStudentGoalRequest;
+    goalId: string;
+    postStudentGoalStatusRequest?: PostStudentGoalStatusRequest;
 }
 
 export interface PostStudentStageOperationRequest {
@@ -91,60 +87,6 @@ export interface PostStudentStageOperationRequest {
  * 
  */
 export class StudentsApi extends runtime.BaseAPI {
-
-    /**
-     * Delete a student goal.
-     * Delete student goal
-     */
-    async deleteStudentGoalRaw(requestParameters: DeleteStudentGoalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['studentId'] == null) {
-            throw new runtime.RequiredError(
-                'studentId',
-                'Required parameter "studentId" was null or undefined when calling deleteStudentGoal().'
-            );
-        }
-
-        if (requestParameters['goalId'] == null) {
-            throw new runtime.RequiredError(
-                'goalId',
-                'Required parameter "goalId" was null or undefined when calling deleteStudentGoal().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("Authorization", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-
-        let urlPath = `/students/{studentId}/goals/{goalId}`;
-        urlPath = urlPath.replace(`{${"studentId"}}`, encodeURIComponent(String(requestParameters['studentId'])));
-        urlPath = urlPath.replace(`{${"goalId"}}`, encodeURIComponent(String(requestParameters['goalId'])));
-
-        const response = await this.request({
-            path: urlPath,
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Delete a student goal.
-     * Delete student goal
-     */
-    async deleteStudentGoal(requestParameters: DeleteStudentGoalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.deleteStudentGoalRaw(requestParameters, initOverrides);
-    }
 
     /**
      * Delete a student stage.
@@ -430,14 +372,21 @@ export class StudentsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new student goal.
-     * Create student goal
+     * Record a new status for a student goal. Upserts the student goal row and appends a transition.
+     * Record student goal status
      */
-    async postStudentGoalRaw(requestParameters: PostStudentGoalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostStudentGoal200Response>> {
+    async postStudentGoalStatusRaw(requestParameters: PostStudentGoalStatusOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PostStudentGoalStatus200Response>> {
         if (requestParameters['studentId'] == null) {
             throw new runtime.RequiredError(
                 'studentId',
-                'Required parameter "studentId" was null or undefined when calling postStudentGoal().'
+                'Required parameter "studentId" was null or undefined when calling postStudentGoalStatus().'
+            );
+        }
+
+        if (requestParameters['goalId'] == null) {
+            throw new runtime.RequiredError(
+                'goalId',
+                'Required parameter "goalId" was null or undefined when calling postStudentGoalStatus().'
             );
         }
 
@@ -456,26 +405,27 @@ export class StudentsApi extends runtime.BaseAPI {
             }
         }
 
-        let urlPath = `/students/{studentId}/goals`;
+        let urlPath = `/students/{studentId}/goals/{goalId}/status`;
         urlPath = urlPath.replace(`{${"studentId"}}`, encodeURIComponent(String(requestParameters['studentId'])));
+        urlPath = urlPath.replace(`{${"goalId"}}`, encodeURIComponent(String(requestParameters['goalId'])));
 
         const response = await this.request({
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PostStudentGoalRequestToJSON(requestParameters['postStudentGoalRequest']),
+            body: PostStudentGoalStatusRequestToJSON(requestParameters['postStudentGoalStatusRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PostStudentGoal200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PostStudentGoalStatus200ResponseFromJSON(jsonValue));
     }
 
     /**
-     * Create a new student goal.
-     * Create student goal
+     * Record a new status for a student goal. Upserts the student goal row and appends a transition.
+     * Record student goal status
      */
-    async postStudentGoal(requestParameters: PostStudentGoalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostStudentGoal200Response> {
-        const response = await this.postStudentGoalRaw(requestParameters, initOverrides);
+    async postStudentGoalStatus(requestParameters: PostStudentGoalStatusOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PostStudentGoalStatus200Response> {
+        const response = await this.postStudentGoalStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
