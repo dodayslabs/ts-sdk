@@ -51,6 +51,24 @@ export interface StudentGoal {
      * @memberof StudentGoal
      */
     achievedAt?: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof StudentGoal
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StudentGoal
+     */
+    imageUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StudentGoal
+     */
+    videoUrl?: string;
 }
 
 
@@ -79,6 +97,9 @@ export function StudentGoalFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'name': json['name'],
         'status': StudentGoalStatusFromJSON(json['status']),
         'achievedAt': json['achieved_at'] == null ? undefined : (new Date(json['achieved_at'])),
+        'description': json['description'] == null ? undefined : json['description'],
+        'imageUrl': json['image_url'] == null ? undefined : json['image_url'],
+        'videoUrl': json['video_url'] == null ? undefined : json['video_url'],
     };
 }
 
@@ -97,6 +118,9 @@ export function StudentGoalToJSONTyped(value?: StudentGoal | null, ignoreDiscrim
         'name': value['name'],
         'status': StudentGoalStatusToJSON(value['status']),
         'achieved_at': value['achievedAt'] == null ? undefined : ((value['achievedAt']).toISOString()),
+        'description': value['description'],
+        'image_url': value['imageUrl'],
+        'video_url': value['videoUrl'],
     };
 }
 
