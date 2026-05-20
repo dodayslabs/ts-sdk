@@ -1,0 +1,8 @@
+allowBuilds:
+  '@nestjs/core': true
+  '@openapitools/openapi-generator-cli': true
+minimumReleaseAgeExclude:
+  - '@openapitools/openapi-generator-cli@2.34.0'
+onlyBuiltDependencies:
+  - '@nestjs/core'
+  - '@openapitools/openapi-generator-cli'
