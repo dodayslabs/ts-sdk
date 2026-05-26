@@ -68,19 +68,19 @@ export interface StudentStage {
      * @type {string}
      * @memberof StudentStage
      */
-    badgeImageUrl?: string;
+    badgeImage?: string | null;
     /**
      * 
      * @type {string}
      * @memberof StudentStage
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof StudentStage
      */
-    certificateUrl?: string;
+    certificate?: string | null;
     /**
      * 
      * @type {Array<StudentGoal>}
@@ -118,9 +118,9 @@ export function StudentStageFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'providerName': json['provider_name'],
         'active': json['active'],
         'awardedOn': json['awarded_on'] == null ? undefined : (new Date(json['awarded_on'])),
-        'badgeImageUrl': json['badge_image_url'] == null ? undefined : json['badge_image_url'],
+        'badgeImage': json['badge_image'] == null ? undefined : json['badge_image'],
         'description': json['description'] == null ? undefined : json['description'],
-        'certificateUrl': json['certificate_url'] == null ? undefined : json['certificate_url'],
+        'certificate': json['certificate'] == null ? undefined : json['certificate'],
         'goals': ((json['goals'] as Array<any>).map(StudentGoalFromJSON)),
     };
 }
@@ -142,9 +142,9 @@ export function StudentStageToJSONTyped(value?: StudentStage | null, ignoreDiscr
         'provider_name': value['providerName'],
         'active': value['active'],
         'awarded_on': value['awardedOn'] == null ? undefined : ((value['awardedOn']).toISOString().substring(0,10)),
-        'badge_image_url': value['badgeImageUrl'],
+        'badge_image': value['badgeImage'],
         'description': value['description'],
-        'certificate_url': value['certificateUrl'],
+        'certificate': value['certificate'],
         'goals': ((value['goals'] as Array<any>).map(StudentGoalToJSON)),
     };
 }

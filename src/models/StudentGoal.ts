@@ -56,19 +56,19 @@ export interface StudentGoal {
      * @type {string}
      * @memberof StudentGoal
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof StudentGoal
      */
-    imageUrl?: string;
+    image?: string | null;
     /**
      * 
      * @type {string}
      * @memberof StudentGoal
      */
-    videoUrl?: string;
+    video?: string | null;
 }
 
 
@@ -98,8 +98,8 @@ export function StudentGoalFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'status': StudentGoalStatusFromJSON(json['status']),
         'achievedAt': json['achieved_at'] == null ? undefined : (new Date(json['achieved_at'])),
         'description': json['description'] == null ? undefined : json['description'],
-        'imageUrl': json['image_url'] == null ? undefined : json['image_url'],
-        'videoUrl': json['video_url'] == null ? undefined : json['video_url'],
+        'image': json['image'] == null ? undefined : json['image'],
+        'video': json['video'] == null ? undefined : json['video'],
     };
 }
 
@@ -119,8 +119,8 @@ export function StudentGoalToJSONTyped(value?: StudentGoal | null, ignoreDiscrim
         'status': StudentGoalStatusToJSON(value['status']),
         'achieved_at': value['achievedAt'] == null ? undefined : ((value['achievedAt']).toISOString()),
         'description': value['description'],
-        'image_url': value['imageUrl'],
-        'video_url': value['videoUrl'],
+        'image': value['image'],
+        'video': value['video'],
     };
 }
 
