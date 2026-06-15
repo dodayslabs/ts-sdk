@@ -13,8 +13,8 @@ This is a TypeScript SDK for the DoDays API, generated using OpenAPI Generator. 
 - **Generator**: Uses `typescript-fetch` generator to create the SDK
 - **Output Directory**: Generated code is placed in the `src/` directory
 - **Build Output**: Compiled JavaScript and TypeScript declarations are output to `dist/` directory
-- **Node.js Environment**: Configured for Node.js v24.4.1 (specified in .nvmrc)
-- **Package Manager**: Uses pnpm (version 10.17.1) as specified in package.json
+- **Node.js Environment**: Configured for Node.js v24.16.0 (specified in .nvmrc)
+- **Package Manager**: Uses pnpm (version 11.6.0) as specified in package.json
 
 ## Commands
 
