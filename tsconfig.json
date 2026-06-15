@@ -4,7 +4,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "target": "es2022",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
 
     /* Strictness */
     "strict": true,
