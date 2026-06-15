@@ -30,8 +30,8 @@ This SDK is automatically generated from the DoDays OpenAPI specification using 
 
 ### Prerequisites
 
-- Node.js v24.9.0 (use `nvm use` to switch to the correct version)
-- pnpm 10.17.1+
+- Node.js v24.16.0 (use `nvm use` to switch to the correct version)
+- pnpm 11.16.0+
 
 ### Setup
 
