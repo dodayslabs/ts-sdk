@@ -62,7 +62,7 @@ export interface Charge {
      * @type {Student}
      * @memberof Charge
      */
-    student?: Student;
+    student?: Student | null;
 }
 
 /**

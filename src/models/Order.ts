@@ -44,25 +44,25 @@ export interface Order {
      * @type {number}
      * @memberof Order
      */
-    amount?: number;
+    amount: number;
     /**
      * 
      * @type {string}
      * @memberof Order
      */
-    providerName?: string;
+    providerName: string;
     /**
      * 
      * @type {Date}
      * @memberof Order
      */
-    createdAt?: Date;
+    createdAt: Date;
     /**
      * 
      * @type {Student}
      * @memberof Order
      */
-    student?: Student;
+    student?: Student | null;
 }
 
 /**
@@ -71,6 +71,9 @@ export interface Order {
 export function instanceOfOrder(value: object): value is Order {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('productName' in value) || value['productName'] === undefined) return false;
+    if (!('amount' in value) || value['amount'] === undefined) return false;
+    if (!('providerName' in value) || value['providerName'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     return true;
 }
 
@@ -86,9 +89,9 @@ export function OrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ord
         
         'id': json['id'],
         'productName': json['product_name'],
-        'amount': json['amount'] == null ? undefined : json['amount'],
-        'providerName': json['provider_name'] == null ? undefined : json['provider_name'],
-        'createdAt': json['created_at'] == null ? undefined : (new Date(json['created_at'])),
+        'amount': json['amount'],
+        'providerName': json['provider_name'],
+        'createdAt': (new Date(json['created_at'])),
         'student': json['student'] == null ? undefined : StudentFromJSON(json['student']),
     };
 }
@@ -108,7 +111,7 @@ export function OrderToJSONTyped(value?: Order | null, ignoreDiscriminator: bool
         'product_name': value['productName'],
         'amount': value['amount'],
         'provider_name': value['providerName'],
-        'created_at': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'created_at': ((value['createdAt']).toISOString()),
         'student': StudentToJSON(value['student']),
     };
 }
