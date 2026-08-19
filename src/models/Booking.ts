@@ -48,6 +48,12 @@ export interface Booking {
     ref: string;
     /**
      * 
+     * @type {Date}
+     * @memberof Booking
+     */
+    createdAt?: Date;
+    /**
+     * 
      * @type {number}
      * @memberof Booking
      */
@@ -231,6 +237,7 @@ export function BookingFromJSONTyped(json: any, ignoreDiscriminator: boolean): B
         
         'id': json['id'],
         'ref': json['ref'],
+        'createdAt': json['created_at'] == null ? undefined : (new Date(json['created_at'])),
         'studentId': json['student_id'],
         'studentName': json['student_name'],
         'providerId': json['provider_id'],
@@ -270,6 +277,7 @@ export function BookingToJSONTyped(value?: Booking | null, ignoreDiscriminator: 
         
         'id': value['id'],
         'ref': value['ref'],
+        'created_at': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'student_id': value['studentId'],
         'student_name': value['studentName'],
         'provider_id': value['providerId'],

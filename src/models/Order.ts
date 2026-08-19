@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Student } from './Student';
+import {
+    StudentFromJSON,
+    StudentFromJSONTyped,
+    StudentToJSON,
+    StudentToJSONTyped,
+} from './Student';
+
 /**
  * 
  * @export
@@ -31,6 +39,24 @@ export interface Order {
      * @memberof Order
      */
     productName: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Order
+     */
+    amount?: number;
+    /**
+     * 
+     * @type {Date}
+     * @memberof Order
+     */
+    createdAt?: Date;
+    /**
+     * 
+     * @type {Student}
+     * @memberof Order
+     */
+    student?: Student;
 }
 
 /**
@@ -54,6 +80,9 @@ export function OrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ord
         
         'id': json['id'],
         'productName': json['product_name'],
+        'amount': json['amount'] == null ? undefined : json['amount'],
+        'createdAt': json['created_at'] == null ? undefined : (new Date(json['created_at'])),
+        'student': json['student'] == null ? undefined : StudentFromJSON(json['student']),
     };
 }
 
@@ -70,6 +99,9 @@ export function OrderToJSONTyped(value?: Order | null, ignoreDiscriminator: bool
         
         'id': value['id'],
         'product_name': value['productName'],
+        'amount': value['amount'],
+        'created_at': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'student': StudentToJSON(value['student']),
     };
 }
 
