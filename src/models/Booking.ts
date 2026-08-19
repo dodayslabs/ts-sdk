@@ -48,12 +48,6 @@ export interface Booking {
     ref: string;
     /**
      * 
-     * @type {Date}
-     * @memberof Booking
-     */
-    createdAt?: Date;
-    /**
-     * 
      * @type {number}
      * @memberof Booking
      */
@@ -180,6 +174,12 @@ export interface Booking {
     successfulPaymentsCount?: number;
     /**
      * 
+     * @type {Date}
+     * @memberof Booking
+     */
+    createdAt?: Date;
+    /**
+     * 
      * @type {Array<BookingSession>}
      * @memberof Booking
      */
@@ -237,7 +237,6 @@ export function BookingFromJSONTyped(json: any, ignoreDiscriminator: boolean): B
         
         'id': json['id'],
         'ref': json['ref'],
-        'createdAt': json['created_at'] == null ? undefined : (new Date(json['created_at'])),
         'studentId': json['student_id'],
         'studentName': json['student_name'],
         'providerId': json['provider_id'],
@@ -259,6 +258,7 @@ export function BookingFromJSONTyped(json: any, ignoreDiscriminator: boolean): B
         'lastSession': json['last_session'] == null ? undefined : (new Date(json['last_session'])),
         'processingPaymentsCount': json['processing_payments_count'] == null ? undefined : json['processing_payments_count'],
         'successfulPaymentsCount': json['successful_payments_count'] == null ? undefined : json['successful_payments_count'],
+        'createdAt': json['created_at'] == null ? undefined : (new Date(json['created_at'])),
         'sessions': json['sessions'] == null ? undefined : ((json['sessions'] as Array<any>).map(BookingSessionFromJSON)),
         '_class': json['class'] == null ? undefined : ClassFromJSON(json['class']),
     };
@@ -277,7 +277,6 @@ export function BookingToJSONTyped(value?: Booking | null, ignoreDiscriminator: 
         
         'id': value['id'],
         'ref': value['ref'],
-        'created_at': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'student_id': value['studentId'],
         'student_name': value['studentName'],
         'provider_id': value['providerId'],
@@ -299,6 +298,7 @@ export function BookingToJSONTyped(value?: Booking | null, ignoreDiscriminator: 
         'last_session': value['lastSession'] == null ? undefined : ((value['lastSession']).toISOString()),
         'processing_payments_count': value['processingPaymentsCount'],
         'successful_payments_count': value['successfulPaymentsCount'],
+        'created_at': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'sessions': value['sessions'] == null ? undefined : ((value['sessions'] as Array<any>).map(BookingSessionToJSON)),
         'class': ClassToJSON(value['_class']),
     };

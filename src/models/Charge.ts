@@ -35,12 +35,6 @@ export interface Charge {
     id: number;
     /**
      * 
-     * @type {Date}
-     * @memberof Charge
-     */
-    createdAt: Date;
-    /**
-     * 
      * @type {string}
      * @memberof Charge
      */
@@ -59,6 +53,12 @@ export interface Charge {
     providerName: string;
     /**
      * 
+     * @type {Date}
+     * @memberof Charge
+     */
+    createdAt: Date;
+    /**
+     * 
      * @type {Student}
      * @memberof Charge
      */
@@ -70,10 +70,10 @@ export interface Charge {
  */
 export function instanceOfCharge(value: object): value is Charge {
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
     if (!('amount' in value) || value['amount'] === undefined) return false;
     if (!('providerName' in value) || value['providerName'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     return true;
 }
 
@@ -88,10 +88,10 @@ export function ChargeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ch
     return {
         
         'id': json['id'],
-        'createdAt': (new Date(json['created_at'])),
         'description': json['description'],
         'amount': json['amount'],
         'providerName': json['provider_name'],
+        'createdAt': (new Date(json['created_at'])),
         'student': json['student'] == null ? undefined : StudentFromJSON(json['student']),
     };
 }
@@ -108,10 +108,10 @@ export function ChargeToJSONTyped(value?: Charge | null, ignoreDiscriminator: bo
     return {
         
         'id': value['id'],
-        'created_at': ((value['createdAt']).toISOString()),
         'description': value['description'],
         'amount': value['amount'],
         'provider_name': value['providerName'],
+        'created_at': ((value['createdAt']).toISOString()),
         'student': StudentToJSON(value['student']),
     };
 }
