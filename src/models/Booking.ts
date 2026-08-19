@@ -174,6 +174,12 @@ export interface Booking {
     successfulPaymentsCount?: number;
     /**
      * 
+     * @type {Date}
+     * @memberof Booking
+     */
+    createdAt: Date;
+    /**
+     * 
      * @type {Array<BookingSession>}
      * @memberof Booking
      */
@@ -216,6 +222,7 @@ export function instanceOfBooking(value: object): value is Booking {
     if (!('net' in value) || value['net'] === undefined) return false;
     if (!('gross' in value) || value['gross'] === undefined) return false;
     if (!('balance' in value) || value['balance'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     return true;
 }
 
@@ -252,6 +259,7 @@ export function BookingFromJSONTyped(json: any, ignoreDiscriminator: boolean): B
         'lastSession': json['last_session'] == null ? undefined : (new Date(json['last_session'])),
         'processingPaymentsCount': json['processing_payments_count'] == null ? undefined : json['processing_payments_count'],
         'successfulPaymentsCount': json['successful_payments_count'] == null ? undefined : json['successful_payments_count'],
+        'createdAt': (new Date(json['created_at'])),
         'sessions': json['sessions'] == null ? undefined : ((json['sessions'] as Array<any>).map(BookingSessionFromJSON)),
         '_class': json['class'] == null ? undefined : ClassFromJSON(json['class']),
     };
@@ -291,6 +299,7 @@ export function BookingToJSONTyped(value?: Booking | null, ignoreDiscriminator: 
         'last_session': value['lastSession'] == null ? undefined : ((value['lastSession']).toISOString()),
         'processing_payments_count': value['processingPaymentsCount'],
         'successful_payments_count': value['successfulPaymentsCount'],
+        'created_at': ((value['createdAt']).toISOString()),
         'sessions': value['sessions'] == null ? undefined : ((value['sessions'] as Array<any>).map(BookingSessionToJSON)),
         'class': ClassToJSON(value['_class']),
     };

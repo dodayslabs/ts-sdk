@@ -4,7 +4,7 @@
 
 ```
 pnpm build
-npm version 0.x.0-beta.0
+npm version 1.x.0-beta.0
 npm publish --tag beta
 ```
 
@@ -27,14 +27,14 @@ git pull origin main
 ### You can do this manually or use:
 
 ```
-npm version 0.x.0 --no-git-tag-version
+npm version 1.x.0 --no-git-tag-version
 ```
 
 ## 5. Commit the version update
 
 ```
 git add package.json
-git commit -m "Release v0.x.0"
+git commit -m "Release v1.x.0"
 git push origin main
 ```
 

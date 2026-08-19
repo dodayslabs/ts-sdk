@@ -24,71 +24,71 @@ import {
 /**
  * 
  * @export
- * @interface Order
+ * @interface Charge
  */
-export interface Order {
+export interface Charge {
     /**
      * 
      * @type {number}
-     * @memberof Order
+     * @memberof Charge
      */
     id: number;
     /**
      * 
      * @type {string}
-     * @memberof Order
+     * @memberof Charge
      */
-    productName: string;
+    description: string;
     /**
      * 
      * @type {number}
-     * @memberof Order
+     * @memberof Charge
      */
     amount: number;
     /**
      * 
      * @type {string}
-     * @memberof Order
+     * @memberof Charge
      */
     providerName: string;
     /**
      * 
      * @type {Date}
-     * @memberof Order
+     * @memberof Charge
      */
     createdAt: Date;
     /**
      * 
      * @type {Student}
-     * @memberof Order
+     * @memberof Charge
      */
     student?: Student | null;
 }
 
 /**
- * Check if a given object implements the Order interface.
+ * Check if a given object implements the Charge interface.
  */
-export function instanceOfOrder(value: object): value is Order {
+export function instanceOfCharge(value: object): value is Charge {
     if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('productName' in value) || value['productName'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
     if (!('amount' in value) || value['amount'] === undefined) return false;
     if (!('providerName' in value) || value['providerName'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     return true;
 }
 
-export function OrderFromJSON(json: any): Order {
-    return OrderFromJSONTyped(json, false);
+export function ChargeFromJSON(json: any): Charge {
+    return ChargeFromJSONTyped(json, false);
 }
 
-export function OrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Order {
+export function ChargeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Charge {
     if (json == null) {
         return json;
     }
     return {
         
         'id': json['id'],
-        'productName': json['product_name'],
+        'description': json['description'],
         'amount': json['amount'],
         'providerName': json['provider_name'],
         'createdAt': (new Date(json['created_at'])),
@@ -96,11 +96,11 @@ export function OrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ord
     };
 }
 
-export function OrderToJSON(json: any): Order {
-    return OrderToJSONTyped(json, false);
+export function ChargeToJSON(json: any): Charge {
+    return ChargeToJSONTyped(json, false);
 }
 
-export function OrderToJSONTyped(value?: Order | null, ignoreDiscriminator: boolean = false): any {
+export function ChargeToJSONTyped(value?: Charge | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -108,7 +108,7 @@ export function OrderToJSONTyped(value?: Order | null, ignoreDiscriminator: bool
     return {
         
         'id': value['id'],
-        'product_name': value['productName'],
+        'description': value['description'],
         'amount': value['amount'],
         'provider_name': value['providerName'],
         'created_at': ((value['createdAt']).toISOString()),
