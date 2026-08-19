@@ -47,6 +47,12 @@ export interface Order {
     amount?: number;
     /**
      * 
+     * @type {string}
+     * @memberof Order
+     */
+    providerName?: string;
+    /**
+     * 
      * @type {Date}
      * @memberof Order
      */
@@ -81,6 +87,7 @@ export function OrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ord
         'id': json['id'],
         'productName': json['product_name'],
         'amount': json['amount'] == null ? undefined : json['amount'],
+        'providerName': json['provider_name'] == null ? undefined : json['provider_name'],
         'createdAt': json['created_at'] == null ? undefined : (new Date(json['created_at'])),
         'student': json['student'] == null ? undefined : StudentFromJSON(json['student']),
     };
@@ -100,6 +107,7 @@ export function OrderToJSONTyped(value?: Order | null, ignoreDiscriminator: bool
         'id': value['id'],
         'product_name': value['productName'],
         'amount': value['amount'],
+        'provider_name': value['providerName'],
         'created_at': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
         'student': StudentToJSON(value['student']),
     };
