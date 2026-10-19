@@ -38,7 +38,7 @@ export interface PostSetupIntentRequest {
      * @type {string}
      * @memberof PostSetupIntentRequest
      */
-    customer: string;
+    customer?: string;
     /**
      * 
      * @type {PostSetupIntentRequestOverrides}
@@ -52,7 +52,6 @@ export interface PostSetupIntentRequest {
  */
 export function instanceOfPostSetupIntentRequest(value: object): value is PostSetupIntentRequest {
     if (!('providerId' in value) || value['providerId'] === undefined) return false;
-    if (!('customer' in value) || value['customer'] === undefined) return false;
     return true;
 }
 
@@ -67,7 +66,7 @@ export function PostSetupIntentRequestFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'providerId': json['provider_id'],
-        'customer': json['customer'],
+        'customer': json['customer'] == null ? undefined : json['customer'],
         'overrides': json['overrides'] == null ? undefined : PostSetupIntentRequestOverridesFromJSON(json['overrides']),
     };
 }
