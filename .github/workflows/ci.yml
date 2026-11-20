@@ -27,8 +27,8 @@ jobs:
         env:
           HEAD_REF: ${{ github.head_ref }}
         run: |
-          if git ls-remote --exit-code --heads https://github.com/dodayslabs/docs.git "refs/heads/$HEAD_REF" > /dev/null; then
-            echo "ref=refs/heads/$HEAD_REF" >> "$GITHUB_OUTPUT"
+          if branch=$(git ls-remote --exit-code --heads https://github.com/dodayslabs/docs.git "refs/heads/$HEAD_REF"); then
+            echo "ref=${branch%%[[:space:]]*}" >> "$GITHUB_OUTPUT"
           else
             # ls-remote exits 2 only when the branch is missing; anything else must not fall back to main.
             status=$?
