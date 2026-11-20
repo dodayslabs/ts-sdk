@@ -65,6 +65,22 @@ jobs:
         working-directory: ts-sdk
         run: pnpm install --frozen-lockfile
 
+      # The generator exits 0 without writing anything if its jar download is cut off.
+      # Removing FILES, which every real run rewrites, makes that show up as drift.
       - name: Generate and compile
         working-directory: ts-sdk
-        run: pnpm build
+        run: |
+          rm src/.openapi-generator/FILES
+          pnpm build
+
+      - name: Check the committed SDK matches the spec
+        working-directory: ts-sdk
+        env:
+          DOCS_REF: ${{ steps.docs.outputs.ref }}
+        run: |
+          drift=$(git status --porcelain -- src)
+          if [ -n "$drift" ]; then
+            echo "$drift"
+            echo "::error::src/ does not match docs/openapi.yaml at $DOCS_REF. Run pnpm build against that spec and commit src/."
+            exit 1
+          fi
