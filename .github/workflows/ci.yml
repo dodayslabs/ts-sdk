@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          path: ts-sdk
+
+      - name: Pick the docs branch
+        id: docs
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          if branch=$(git ls-remote --exit-code --heads https://github.com/dodayslabs/docs.git "refs/heads/$HEAD_REF"); then
+            echo "ref=${branch%%[[:space:]]*}" >> "$GITHUB_OUTPUT"
+          else
+            # ls-remote exits 2 only when the branch is missing; anything else must not fall back to main.
+            status=$?
+            [ "$status" -eq 2 ] || exit "$status"
+            echo "ref=refs/heads/main" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout docs
+        uses: actions/checkout@v6
+        with:
+          repository: dodayslabs/docs
+          ref: ${{ steps.docs.outputs.ref }}
+          path: docs
+
+      - name: Setup Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          package_json_file: ts-sdk/package.json
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ts-sdk/.nvmrc
+          cache: pnpm
+          cache-dependency-path: ts-sdk/pnpm-lock.yaml
+
+      - name: Install dependencies
+        working-directory: ts-sdk
+        run: pnpm install --frozen-lockfile
+
+      # The generator exits 0 without writing anything if its jar download is cut off.
+      # Removing FILES, which every real run rewrites, makes that show up as drift.
+      - name: Generate and compile
+        working-directory: ts-sdk
+        run: |
+          rm src/.openapi-generator/FILES
+          pnpm build
+
+      - name: Check the committed SDK matches the spec
+        working-directory: ts-sdk
+        env:
+          DOCS_REF: ${{ steps.docs.outputs.ref }}
+        run: |
+          drift=$(git status --porcelain -- src)
+          if [ -n "$drift" ]; then
+            echo "$drift"
+            echo "::error::src/ does not match docs/openapi.yaml at $DOCS_REF. Run pnpm build against that spec and commit src/."
+            exit 1
+          fi
