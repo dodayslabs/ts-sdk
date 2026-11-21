@@ -65,13 +65,9 @@ jobs:
         working-directory: ts-sdk
         run: pnpm install --frozen-lockfile
 
-      # The generator exits 0 without writing anything if its jar download is cut off.
-      # Removing FILES, which every real run rewrites, makes that show up as drift.
       - name: Generate and compile
         working-directory: ts-sdk
-        run: |
-          rm src/.openapi-generator/FILES
-          pnpm build
+        run: pnpm build
 
       - name: Check the committed SDK matches the spec
         working-directory: ts-sdk
