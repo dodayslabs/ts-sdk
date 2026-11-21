@@ -35,7 +35,7 @@ pnpm compile
 
 ```bash
 # Generate TypeScript SDK from OpenAPI specification (manual)
-npx openapi-generator-cli generate -i ../docs/openapi.yaml -g typescript-fetch -o src
+rm -rf src/apis src/models && npx openapi-generator-cli generate -i ../docs/openapi.yaml -g typescript-fetch -o src
 
 # View available generators
 npx openapi-generator-cli list
