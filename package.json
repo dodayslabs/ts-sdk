@@ -16,7 +16,7 @@
   },
   "scripts": {
     "generate": "rm -rf src/apis src/models && openapi-generator-cli generate -i ../docs/openapi.yaml -g typescript-fetch -o src",
-    "compile": "tsc",
+    "compile": "rm -rf dist && tsc",
     "build": "pnpm generate && pnpm compile"
   },
   "files": [
