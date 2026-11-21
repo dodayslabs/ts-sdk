@@ -15,7 +15,7 @@
     "typescript": "^6.0.3"
   },
   "scripts": {
-    "generate": "openapi-generator-cli generate -i ../docs/openapi.yaml -g typescript-fetch -o src",
+    "generate": "rm -rf src/apis src/models && openapi-generator-cli generate -i ../docs/openapi.yaml -g typescript-fetch -o src",
     "compile": "tsc",
     "build": "pnpm generate && pnpm compile"
   },
